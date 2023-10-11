@@ -19,11 +19,12 @@ a.btn {
 
 /* Grainger Image Styling */
 .graingerimage {
-    padding: 125px 25px;
+    padding-left: 60px;
 }
 
 /* Login Credentials Styling */
 .logincredentials {
-    padding: 200px 300px;
+    padding: 150px 200px;
     font-weight: bold;
+    font-size: larger;
 }
