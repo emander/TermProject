@@ -12,8 +12,8 @@
                 <!-- Adjust the width of the logo here -->
                 <td><img src="black-center-UWlogo-print.png" alt="W Logo" width="115"></td>
                 <td align="right">
-                    <a type="button" class="btn" href="#" style="margin-right: 20px;">Home</a>
-                    <a type="button" class="btn" href="#" style="margin-right: 20px;">Table View</a>
+                    <a type="button" class="btn" href="index.html" style="margin-right: 20px;">Home</a>
+                    <a type="button" class="btn" href="tableview.html" style="margin-right: 20px;" href="tableview.html">Table View</a>
                     <a type="button" class="btn" href="#" style="margin-right: 20px;">Calendar View</a>
                 </td>
             </tr>
@@ -26,6 +26,7 @@
     <table border="1" width="90%" align="center">
         <!-- table headers -->
         <tr>
+            <th>Status</th>
             <th>Quarter</th>
             <th>Business Function</th>
             <th>Task Category</th>
@@ -33,11 +34,14 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Collaborators</th>
-            <th>Status</th>
             <th>Comments</th>
         </tr>
         <!-- table content -->
         <tr>
+            <td>
+                <label for="statuscheckbox"></label>
+                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+            </td>
             <td>Sample quarter</td>
             <td>Sample business function</td>
             <td>Sample task category</td>
@@ -45,7 +49,6 @@
             <td>Sample start date</td>
             <td>Sample end date</td>
             <td>Sample collaborators</td>
-            <td>Sample status</td>
             <td>Sample comments</td>
         </tr>
     </table>
