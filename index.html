@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wisconsin School of Business</title>
     <link rel="stylesheet" href="style.css" />
+    <form action="#" method="post" onsubmit="return validateForm()">
+
     <!-- Linking to external JavaScript file -->
     <script src="script.js"></script>
 </head>
@@ -57,7 +59,34 @@
             </td>
         </tr>
     </table>
+ <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
+      <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+
+      <script type="text/javascript">
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCADS1yH995TK577jKcj5XcxvJB9rYXv1E",
+            authDomain: "slab-term-project.firebaseapp.com",
+            projectId: "slab-term-project",
+            storageBucket: "slab-term-project.appspot.com",
+            messagingSenderId: "485095951674",
+            appId: "1:485095951674:web:f7aea6c2001a6e3c19d403"
+            };
+                // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+                // define authentication variable
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+      </script>
 </body>
 
 </html>
