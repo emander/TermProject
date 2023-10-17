@@ -7,6 +7,14 @@
     font-size: 16px;
     text-decoration: none;
 }
+.btn {
+    transition-duration: 0.4s;
+  }
+  
+  .btn:hover {
+    background-color: Grey; /* Black */
+    color: white;
+  }
 
 /* Table Styling */
 .table {
