@@ -17,6 +17,15 @@ a.btn {
     text-decoration: none;
 }
 
+a.btn {
+    transition-duration: 0.4s;
+  }
+  
+  a.btn:hover {
+    background-color: Grey; /* Black */
+    color: white;
+  }
+
 /* Grainger Image Styling */
 .graingerimage {
     padding-left: 60px;
