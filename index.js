@@ -19,7 +19,7 @@ function signInUser(email, password) {
         // Handle error
         console.log(error);
       });
-  }
+};
   
 // Validate the login form before submitting
 function validateForm() {
@@ -29,13 +29,13 @@ function validateForm() {
     if (email == "" || password == "") {
         alert("Email and password must be filled out");
         return false;
-    }
+    };
 
     // Attempt to sign the user in using Firebase Authentication
     signInUser(email, password);
 
     return false;  // To prevent form submission since we're handling authentication with Firebase
-}
+};
 
      { // Redirect to tableview.html upon successful validation
       window.location.href = "tableview.html";
@@ -44,11 +44,10 @@ function validateForm() {
   
   // JavaScript Function to change header color on mouseover
   function changeHeaderColor() {
-      document.querySelector('.mainheader').style.backgroundColor = "orange";
-  }
+     document.querySelector('.mainheader').style.backgroundColor = "orange";
+  };
   
   // JavaScript Function to revert header color on mouseout
   function revertHeaderColor() {
       document.querySelector('.mainheader').style.backgroundColor = "red";
-  }
-  
+  };
