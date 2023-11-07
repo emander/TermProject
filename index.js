@@ -1,3 +1,19 @@
+// sign in modal
+
+let signinbtn = document.querySelector('#signinbtn');
+let signinModal = document.querySelector('#signinModal');
+let signinModalBg = document.querySelector('#signinModalBg');
+
+signinbtn.addEventListener('click', () => {
+  console.log("test");
+  signinModal.classList.add('is-active');
+});
+
+signinModalBg.addEventListener('click', () => {
+  signinModal.classList.remove('is-active');
+});
+
+
 // Added a function to sign in the user with their email and password
 function signInUser(email, password) {
     auth.signInWithEmailAndPassword(email, password)

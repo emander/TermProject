@@ -7,14 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wisconsin School of Business</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="style.css" />
-    <form action="#" method="post" onsubmit="return validateForm()">
+    <!-- <link rel="stylesheet" href="style.css" /> 
+    <form action="#" method="post" onsubmit="return validateForm()"> -->
 
     <!-- Linking to external JavaScript file -->
-    <script src="script.js"></script>
 </head>
 
 <body>
+    <div class="modal" id="signinModal">
+        <div class="modal-background" id="signinModalBg"></div>
+        <div class="modal-content p-6 has-background-danger-dark">
+            <h1 class="is-size-3 title has-text-light has-text-centered">Sign In</h1>
+            <form id="signinForm">
+                <div class="field">
+                    <label class="label has-text-light">Email</label>
+                    <div class="control">
+                        <input type="email" class="input" id="email_signin">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label has-text-light">Password</label>
+                    <div class="control">
+                        <input type="password" class="input" id="password_signin">
+                    </div>
+                </div>
+                <div class="field">
+                    <class class="control">
+                        <button class="button">Submit</button>
+                    </class>
+                </div>
+                <div class="has-text-white" id="signinError"></div>
+            </form>
+        </div>
+    </div>
 
     <!-- Header -->
     <nav>
@@ -51,19 +76,25 @@
         </div>
     </nav>
 
-    <!-- Main Content * Two Column Layout -->
-    <table width="100%">
-        <tr>
-            <!-- Left Side Image -->
-            <td class="graingerimage" width="50%">
-                <img src="graingerpicture.jpeg" alt="Wisconsin School of Business" width="100%">
-            </td>
+    <header>
+        <figure class="image">
+            <img src="wsbbanner.jpeg" alt="Wisco Banner">
+        </figure>
+    </header>
 
-            <!-- Right Side Login Form -->
-            <td class="logincredentials" width="50%" valign="top">
-                <h2>Log In</h2>
+    <!-- Main Content * Two Column Layout -->
+    <!-- <table width="100%"> -->
+        <!-- <tr> -->
+            <!-- Left Side Image -->
+            <!-- <td class="graingerimage" width="50%"> 
+                <img src="graingerpicture.jpeg" alt="Wisconsin School of Business" width="100%">
+            </td> -->
+
+            <!-- Right Side Login Form --> 
+           <!-- <td class="logincredentials" width="50%" valign="top">
+                <h2>Log In</h2> --> 
                 <!-- Added onsubmit event handler on form to call validateForm function before submission -->
-                <form action="#" method="post" onsubmit="return validateForm()">
+                <!-- <form action="#" method="post" onsubmit="return validateForm()">
                     <label for="email">Email</label><br>
                     <input type="email" id="email" name="email" style="width: 275px; height: 30px;"><br><br>
                     <label for="password">Password</label><br>
@@ -72,7 +103,28 @@
                 </form>
             </td>
         </tr>
-    </table>
+    </table> -->
+
+    <main class="has-background-light">
+        <div class="section">
+            <div class="container">
+                <p class="title is-size-1 has-text-centered">
+                    WISCONSIN SCHOOL OF BUSINESS
+                </p>
+                <p class="title has-text-centered">ACADEMIC PROGRAM MANAGER TASK ORGANIZER</p>
+                <p class="has-text-centered has-text-danger-dark subtitle is-size-4 p-3">
+                    Login to your department to view upcoming tasks, filter on the table task list, and view the calendar
+                </p>
+            </div>
+            <div class="field">
+                <div class="has-text-centered">
+                    <button id="signinbtn" class="button is-danger">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <!-- table view -->
     <div id="tableContent">
@@ -229,6 +281,6 @@
         const db = firebase.firestore();
 
       </script>
+      <script src="app.js"></script>
 </body>
-
 </html>
