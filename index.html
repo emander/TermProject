@@ -58,17 +58,17 @@
             </div>
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a class="button" href="index.html" 
+                    <a class="button is-light has-text-weight-bold" href="index.html" 
                        onmouseover="changeHeaderColor()" 
                        onmouseout="revertHeaderColor()">Home</a>
                 </div>
                 <div class="navbar-item">
-                    <a id="tableviewbutton" class="button"
+                    <a id="tableviewbutton" class="button is-light has-text-weight-bold"
                        onmouseover="changeHeaderColor()" 
                        onmouseout="revertHeaderColor()">Table View</a>
                 </div>
                 <div class="navbar-item">
-                    <a class="button" href="#"
+                    <a class="button is-light has-text-weight-bold" href="#"
                        onmouseover="changeHeaderColor()" 
                        onmouseout="revertHeaderColor()">Calendar View</a>
                 </div>
@@ -124,189 +124,191 @@
                 </div>
             </div>
         </div>
-    </main>
-
-    <!-- table view -->
-    <div id="tableContent">
-        <table class="table" border="1" width="90%" align="center">
-            <!-- filter row with dropdowns -->
-            <tr>
-                <!-- Status Filter -->
-                <td>
-                    <select id="statusFilter">
-                        <option value="">All</option>
-                        <option value="Complete">Complete</option>
-                        <option value="InProgress">In Progress</option>
-                        <option value="OnHold">On Hold</option>
-                    </select>
-                </td>
-    <!-- Quarter Filter -->
-                <td>
-                    <select id="quarterFilter">
-                        <option value="">All</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </td>
-    <!-- Business Function Filter -->
-                <td>
-                    <select id="functionFilter">
-                        <option value="">All</option>
-                        <option value="Curricular">Curricular</option>
-                        <option value="Administrative">Administrative</option>
-                        <option value="Operational">Operational</option>
-                        <option value="FMO">FMO</option>
-                        <option value="Human Resources">Human Resources</option>
-                    </select>
-                </td>
-    <!-- Task Category Filter -->
-                <td>
-                    <select id="categoryFilter">
-                        <option value="">All</option>
-                        <option value="Enrollment">Enrollment</option>
-                        <option value="Recruitment">Recruitment</option>
-                        <option value="Workshop">Workshop</option>
-                        <option value="ShopUW">ShopUW</option>
-                        <option value="Research Opportunities">Research Opportunities</option>
-                    </select>
-                </td>
-            </tr>
-
-
-
-
-            <!-- table headers -->
-            <tr>
-                <th>Status</th>
-                <th>Quarter</th>
-                <th>Business Function</th>
-                <th>Task Category</th>
-                <th>Task</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Collaborators</th>
-                <th>Comments</th>
-            </tr>
-            <!-- table content -->
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>2</td>
-                <td>Curricular</td>
-                <td>Enrollment</td>
-                <td>Spring priority enrollment begins</td>
-                <td></td>
-                <td>11/13/23</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>3</td>
-                <td>Human Resources</td>
-                <td>Recruitment</td>
-                <td>TA Interviews</td>
-                <td>03/01/23</td>
-                <td>03/31/23</td>
-                <td>Marketing Instructors</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>4</td>
-                <td>Operational</td>
-                <td>Workshop</td>
-                <td>Sobic Career Workshop</td>
-                <td>04/21/23</td>
-                <td>04/21/23</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>1</td>
-                <td>Curricular</td>
-                <td>Enrollment</td>
-                <td>Summer term purged for students who did not enroll for the Summer and Fall terms</td>
-                <td></td>
-                <td>09/30/23</td>
-                <td></td>
-                <td>If Summer admits don’t have Summer enrollment but have Fall enrollment, they are processed as admit term changes.</td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>4</td>
-                <td>FMO</td>
-                <td>ShopUW</td>
-                <td>External Purchase Requistions</td>
-                <td></td>
-                <td>04/03/23</td>
-                <td></td>
-                <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>4</td>
-                <td>FMO</td>
-                <td>ShopUW</td>
-                <td>External Purchase Requistions</td>
-                <td></td>
-                <td>04/03/23</td>
-                <td></td>
-                <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="statuscheckbox"></label>
-                    <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                </td>
-                <td>1</td>
-                <td>Human Resources</td>
-                <td>Research Opportunities</td>
-                <td>Research Assistants: June Lim</td>
-                <td>01/02/23</td>
-                <td>08/18/23</td>
-                <td>Neeraj Arora</td>
-                <td>Dani B: Summer '23</td>
-            </tr>
-        </table>
     
-        <br>
-    
-        <!-- edit button and add row button -->
-        <div class="field">
-            <div class="has-text-centered">
-                <button class="button is-danger">
-                    Edit
-                </button>
-                <button class="button is-danger">
-                    Add Row
-                </button>
+
+        <!-- table view -->
+        <div id="tableContent">
+            <table class="table" border="1" width="90%" align="center">
+                <!-- filter row with dropdowns -->
+                <tr>
+                    <!-- Status Filter -->
+                    <td>
+                        <select id="statusFilter">
+                            <option value="">All</option>
+                            <option value="Complete">Complete</option>
+                            <option value="InProgress">In Progress</option>
+                            <option value="OnHold">On Hold</option>
+                        </select>
+                    </td>
+        <!-- Quarter Filter -->
+                    <td>
+                        <select id="quarterFilter">
+                            <option value="">All</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </td>
+        <!-- Business Function Filter -->
+                    <td>
+                        <select id="functionFilter">
+                            <option value="">All</option>
+                            <option value="Curricular">Curricular</option>
+                            <option value="Administrative">Administrative</option>
+                            <option value="Operational">Operational</option>
+                            <option value="FMO">FMO</option>
+                            <option value="Human Resources">Human Resources</option>
+                        </select>
+                    </td>
+        <!-- Task Category Filter -->
+                    <td>
+                        <select id="categoryFilter">
+                            <option value="">All</option>
+                            <option value="Enrollment">Enrollment</option>
+                            <option value="Recruitment">Recruitment</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="ShopUW">ShopUW</option>
+                            <option value="Research Opportunities">Research Opportunities</option>
+                        </select>
+                    </td>
+                </tr>
+
+
+
+
+                <!-- table headers -->
+                <tr>
+                    <th>Status</th>
+                    <th>Quarter</th>
+                    <th>Business Function</th>
+                    <th>Task Category</th>
+                    <th>Task</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Collaborators</th>
+                    <th>Comments</th>
+                </tr>
+                <!-- table content -->
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>2</td>
+                    <td>Curricular</td>
+                    <td>Enrollment</td>
+                    <td>Spring priority enrollment begins</td>
+                    <td></td>
+                    <td>11/13/23</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>3</td>
+                    <td>Human Resources</td>
+                    <td>Recruitment</td>
+                    <td>TA Interviews</td>
+                    <td>03/01/23</td>
+                    <td>03/31/23</td>
+                    <td>Marketing Instructors</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>4</td>
+                    <td>Operational</td>
+                    <td>Workshop</td>
+                    <td>Sobic Career Workshop</td>
+                    <td>04/21/23</td>
+                    <td>04/21/23</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>1</td>
+                    <td>Curricular</td>
+                    <td>Enrollment</td>
+                    <td>Summer term purged for students who did not enroll for the Summer and Fall terms</td>
+                    <td></td>
+                    <td>09/30/23</td>
+                    <td></td>
+                    <td>If Summer admits don’t have Summer enrollment but have Fall enrollment, they are processed as admit term changes.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>4</td>
+                    <td>FMO</td>
+                    <td>ShopUW</td>
+                    <td>External Purchase Requistions</td>
+                    <td></td>
+                    <td>04/03/23</td>
+                    <td></td>
+                    <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>4</td>
+                    <td>FMO</td>
+                    <td>ShopUW</td>
+                    <td>External Purchase Requistions</td>
+                    <td></td>
+                    <td>04/03/23</td>
+                    <td></td>
+                    <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="statuscheckbox"></label>
+                        <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
+                    </td>
+                    <td>1</td>
+                    <td>Human Resources</td>
+                    <td>Research Opportunities</td>
+                    <td>Research Assistants: June Lim</td>
+                    <td>01/02/23</td>
+                    <td>08/18/23</td>
+                    <td>Neeraj Arora</td>
+                    <td>Dani B: Summer '23</td>
+                </tr>
+            </table>
+        
+            <br>
+        
+            <!-- edit button and add row button -->
+            <div class="field">
+                <div class="has-text-centered">
+                    <button class="button is-danger">
+                        Edit
+                    </button>
+                    <button class="button is-danger">
+                        Add Row
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <br>
-    <br>
+        <br>
+        <br>
+
+    </main>
 
     <footer>
         <div class="footer has-background-danger-dark">
