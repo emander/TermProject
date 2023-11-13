@@ -1,15 +1,31 @@
+// sign in modal
+
 let signinbtn = document.querySelector("#signinbtn");
 let signinModal = document.querySelector("#signinModal");
 let signinModalBg = document.querySelector("#signinModalBg");
 const signup_form = document.querySelector("#signup_form");
 
 signinbtn.addEventListener("click", () => {
-  console.log("test");
   signinModal.classList.add("is-active");
 });
 
 signinModalBg.addEventListener("click", () => {
   signinModal.classList.remove("is-active");
+});
+
+// add row modal
+
+let addrowbtn = document.querySelector('#addrowbtn');
+let addrowModal = document.querySelector('#addrowModal');
+let addrowModalBg = document.querySelector('#addrowModalBg');
+
+addrowbtn.addEventListener('click', () =>{
+  console.log('test');
+  addrowModal.classList.add('is-active');
+});
+
+addrowModalBg.addEventListener('click', () => {
+  addrowModal.classList.remove('is-active');
 });
 
 // Brady work on filters
@@ -206,4 +222,5 @@ function signIn() {
   } else {
     alert("Invalid email. Please try again.");
   }
-}
+};
+

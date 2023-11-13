@@ -45,6 +45,71 @@
       </div>
     </div>
 
+    <!-- add row modal -->
+    <div class="modal" id="addrowModal">
+      <div class="modal-background" id="addrowModalBg"></div>
+      <div class="modal-content p-6 has-background-danger-dark">
+        <h1 class="is-size-3 title has-text-light has-text-centered">
+          Add Row
+        </h1>
+        <form>
+          <div class="field">
+            <label class="label has-text-light">Quarter</label>
+            <div class="control">
+              <input type="number" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Business Function</label>
+            <div class="control">
+              <input type="text" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Task Category</label>
+            <div class="control">
+              <input type="text" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Task</label>
+            <div class="control">
+              <input type="text" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Start Date</label>
+            <div class="control">
+              <input type="date" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">End Date</label>
+            <div class="control">
+              <input type="date" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Collaborators</label>
+            <div class="control">
+              <input type="text" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Comments</label>
+            <div class="control">
+              <input type="text" class="input"/>
+            </div>
+          </div>
+          <div class="field">
+            <class class="control">
+              <button class="button">Submit</button>
+            </class>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Header -->
     <nav>
       <div class="navbar has-background-danger-dark">
@@ -417,7 +482,7 @@
             <!-- edit button and add row button -->
             <div class="field">
               <div class="has-text-centered">
-                <button class="button is-danger">Add Row</button>
+                <button class="button is-danger" id="addrowbtn">Add Row</button>
               </div>
             </div>
           </div>

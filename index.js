@@ -5,12 +5,26 @@ let signinModal = document.querySelector('#signinModal');
 let signinModalBg = document.querySelector('#signinModalBg');
 
 signinbtn.addEventListener('click', () => {
-  console.log("test");
   signinModal.classList.add('is-active');
 });
 
 signinModalBg.addEventListener('click', () => {
   signinModal.classList.remove('is-active');
+});
+
+// add row modal
+
+let addrowbtn = document.querySelector('#addrowbtn');
+let addrowModal = document.querySelector('#addrowModal');
+let addrowModalBg = document.querySelector('#addrowModalBg');
+
+addrowbtn.addEventListener('click', () =>{
+  console.log('test');
+  addrowModal.classList.add('is-active');
+});
+
+addrowModalBg.addEventListener('click', () => {
+  addrowModal.classList.remove('is-active');
 });
 
 
@@ -67,6 +81,7 @@ function validateForm() {
   function revertHeaderColor() {
       document.querySelector('.mainheader').style.backgroundColor = "red";
   };
+
 
 
 
