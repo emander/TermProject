@@ -143,44 +143,67 @@ signin_form.addEventListener("submit_signin", (e) => {
 
 // Restricting Access
 
-// Define a list of allowed users
-const allowedUsers = [
-  { email: "joanne.esser@wisc.edu", password: "password1" },
-  { email: "nhia.vang@wisc.edu", password: "password2" },
-  { email: "megan.armstrong@wisc.edu", password: "password3" },
-  { email: "kymberly.aebly@wisc.edu", password: "password4" },
-  { email: "susan.laufenberg@wisc.edu", password: "password5" },
-  { email: "kathy.mccord@wisc.edu", password: "password6" },
-  { email: "dswagner2@wisc.edu", password: "password7" },
+// // Define a list of allowed users
+// const allowedUsers = [
+//   { email: "joanne.esser@wisc.edu", password: "password1" },
+//   { email: "nhia.vang@wisc.edu", password: "password2" },
+//   { email: "megan.armstrong@wisc.edu", password: "password3" },
+//   { email: "kymberly.aebly@wisc.edu", password: "password4" },
+//   { email: "susan.laufenberg@wisc.edu", password: "password5" },
+//   { email: "kathy.mccord@wisc.edu", password: "password6" },
+//   { email: "dswagner2@wisc.edu", password: "password7" },
+// ];
+
+// // Function to authenticate a user
+// async function authenticateUser(email, password) {
+//   const allowedUser = allowedUsers.find(
+//     (user) => user.email === email && user.password === password
+//   );
+
+//   if (allowedUser) {
+//     try {
+//       // Sign in the user using Firebase Authentication
+//       const userCredential = await firebase
+//         .auth()
+//         .signInWithEmailAndPassword(email, password);
+//       const user = userCredential.user;
+//       console.log("Successfully authenticated user:", user.email);
+//       return user;
+//     } catch (error) {
+//       console.error("Error authenticating user:", error.message);
+//       return null;
+//     }
+//   } else {
+//     console.error("User not allowed to log in.");
+//     return null;
+//   }
+// }
+
+// // Example usage
+// const emailToAuthenticate = document.querySelector("#email").value;
+// const passwordToAuthenticate = document.querySelector("#password").value;
+
+// authenticateUser(emailToAuthenticate, passwordToAuthenticate);
+
+// Sign in and Out
+const allowedEmails = [
+  "joanne.esser@wisc.edu",
+  "nhia.vang@wisc.edu",
+  "megan.armstrong@wisc.edu",
+  "kymberly.aebly@wisc.edu",
+  "susan.laufenberg@wisc.edu",
+  "kathy.mccord@wisc.edu",
+  "dswagner2@wisc.edu",
 ];
 
-// Function to authenticate a user
-async function authenticateUser(email, password) {
-  const allowedUser = allowedUsers.find(
-    (user) => user.email === email && user.password === password
-  );
+function signIn() {
+  const emailInput = document.getElementById("email_signin").value;
 
-  if (allowedUser) {
-    try {
-      // Sign in the user using Firebase Authentication
-      const userCredential = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
-      const user = userCredential.user;
-      console.log("Successfully authenticated user:", user.email);
-      return user;
-    } catch (error) {
-      console.error("Error authenticating user:", error.message);
-      return null;
-    }
+  // Check if the entered email is in the list of allowed emails
+  if (allowedEmails.includes(emailInput)) {
+    alert("Sign in successful!");
+    // You might want to redirect or perform additional actions upon successful sign-in
   } else {
-    console.error("User not allowed to log in.");
-    return null;
+    alert("Invalid email. Please try again.");
   }
 }
-
-// Example usage
-const emailToAuthenticate = document.querySelector("#email").value;
-const passwordToAuthenticate = document.querySelector("#password").value;
-
-authenticateUser(emailToAuthenticate, passwordToAuthenticate);
