@@ -56,54 +56,54 @@
           <div class="field">
             <label class="label has-text-light">Quarter</label>
             <div class="control">
-              <input type="number" class="input"/>
+              <input type="number" class="input" id="quarter"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Business Function</label>
             <div class="control">
-              <input type="text" class="input"/>
+              <input type="text" class="input" id="bisfunction"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Task Category</label>
             <div class="control">
-              <input type="text" class="input"/>
+              <input type="text" class="input" id="taskcat"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Task</label>
             <div class="control">
-              <input type="text" class="input"/>
+              <input type="text" class="input" id="task"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Start Date</label>
             <div class="control">
-              <input type="date" class="input"/>
+              <input type="date" class="input" id="startdate"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">End Date</label>
             <div class="control">
-              <input type="date" class="input"/>
+              <input type="date" class="input" id="enddate"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Collaborators</label>
             <div class="control">
-              <input type="text" class="input"/>
+              <input type="text" class="input" id="collaborators"/>
             </div>
           </div>
           <div class="field">
             <label class="label has-text-light">Comments</label>
             <div class="control">
-              <input type="text" class="input"/>
+              <input type="text" class="input" id="comments"/>
             </div>
           </div>
           <div class="field">
             <class class="control">
-              <button class="button">Submit</button>
+              <button class="button" id="submitrowbtn">Submit</button>
             </class>
           </div>
         </form>
@@ -545,20 +545,24 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
 
-    <script type="text/javascript">
+    <script>
       const firebaseConfig = {
         apiKey: "AIzaSyCADS1yH995TK577jKcj5XcxvJB9rYXv1E",
         authDomain: "slab-term-project.firebaseapp.com",
         projectId: "slab-term-project",
         storageBucket: "slab-term-project.appspot.com",
         messagingSenderId: "485095951674",
-        appId: "1:485095951674:web:f7aea6c2001a6e3c19d403",
+        appId: "1:485095951674:web:f7aea6c2001a6e3c19d403"
       };
+
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       // define authentication variable
-      const auth = firebase.auth();
-      const db = firebase.firestore();
+      let auth = firebase.auth();
+      let db = firebase.firestore();
+
+      // define a storage reference
+      let ref = firebase.storage().ref();
 
       // firebase
       //   .auth()

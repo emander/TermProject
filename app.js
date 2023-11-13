@@ -20,7 +20,6 @@ let addrowModal = document.querySelector('#addrowModal');
 let addrowModalBg = document.querySelector('#addrowModalBg');
 
 addrowbtn.addEventListener('click', () =>{
-  console.log('test');
   addrowModal.classList.add('is-active');
 });
 
@@ -223,4 +222,26 @@ function signIn() {
     alert("Invalid email. Please try again.");
   }
 };
+
+// add rows to firebase
+
+let submitrowbtn = document.querySelector('#submitrowbtn');
+
+submitrowbtn.addEventListener('click', () => {
+
+  let tblrow = {
+    quarter: document.querySelector("#quarter").value,
+    bisfunction: document.querySelector("#bisfunction").value,
+    taskcat: document.querySelector("#taskcat").value,
+    task: document.querySelector("#task").value,
+    startdate: document.querySelector("#startdate").value,
+    enddate: document.querySelector("#enddate").value,
+    collaborators: document.querySelector("#collaborators").value,
+    comments: document.querySelector("#comments").value,
+  };
+
+  console.log("Adding row to Firestore: ", tblrow);
+
+  db.collection("tableview").add(tblrow).then(() => alert("new person added!"));
+});
 
