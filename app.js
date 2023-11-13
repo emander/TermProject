@@ -1,26 +1,25 @@
-let signinbtn = document.querySelector('#signinbtn');
-let signinModal = document.querySelector('#signinModal');
-let signinModalBg = document.querySelector('#signinModalBg');
+let signinbtn = document.querySelector("#signinbtn");
+let signinModal = document.querySelector("#signinModal");
+let signinModalBg = document.querySelector("#signinModalBg");
+const signup_form = document.querySelector("#signup_form");
 
-signinbtn.addEventListener('click', () => {
+signinbtn.addEventListener("click", () => {
   console.log("test");
-  signinModal.classList.add('is-active');
+  signinModal.classList.add("is-active");
 });
 
-signinModalBg.addEventListener('click', () => {
-  signinModal.classList.remove('is-active');
+signinModalBg.addEventListener("click", () => {
+  signinModal.classList.remove("is-active");
 });
-
-
 
 // Brady work on filters
 
 // Object to store the current filter states
 var currentFilters = {
-  'status': '',
-  'quarter': '',
-  'business function': '', // Key is now in lowercase
-  'task category': ''      // Key is now in lowercase
+  status: "",
+  quarter: "",
+  "business function": "", // Key is now in lowercase
+  "task category": "", // Key is now in lowercase
   // ... other filters as needed
 };
 
@@ -35,7 +34,9 @@ function filterTable(filterType, value) {
 
 function refreshFilters() {
   // Get the table
-  var table = document.getElementById("tableContent").getElementsByTagName("table")[0];
+  var table = document
+    .getElementById("tableContent")
+    .getElementsByTagName("table")[0];
   var tr = table.getElementsByTagName("tr");
 
   // Loop through all rows of the table, except the first one with filters
@@ -44,26 +45,31 @@ function refreshFilters() {
 
     // Loop through all filters
     for (var filterType in currentFilters) {
-      if (currentFilters.hasOwnProperty(filterType) && currentFilters[filterType] !== "") {
+      if (
+        currentFilters.hasOwnProperty(filterType) &&
+        currentFilters[filterType] !== ""
+      ) {
         // Get the index of the column to filter on
         var columnIndex = findColumnIndex(table, filterType);
-        
+
         // If the column is not found, skip this filterType
         if (columnIndex === -1) continue;
-        
+
         // Get the text content of the current cell in the column to be filtered
         var td = tr[i].getElementsByTagName("td")[columnIndex];
         if (td) {
           var cellValue = td.textContent.trim() || td.innerText.trim();
           // If the cell's text does not match the filter, don't display the row
-          if (cellValue.toLowerCase() !== currentFilters[filterType].toLowerCase()) {
+          if (
+            cellValue.toLowerCase() !== currentFilters[filterType].toLowerCase()
+          ) {
             displayRow = false;
             break; // No need to check further filters for this row
           }
         }
       }
     }
-    
+
     // Apply the display property based on the displayRow flag
     tr[i].style.display = displayRow ? "" : "none";
   }
@@ -73,7 +79,10 @@ function refreshFilters() {
 function findColumnIndex(table, filterType) {
   var th = table.getElementsByTagName("th");
   for (var headerIndex = 0; headerIndex < th.length; headerIndex++) {
-    if (th[headerIndex].textContent.trim().toLowerCase() === filterType.toLowerCase()) {
+    if (
+      th[headerIndex].textContent.trim().toLowerCase() ===
+      filterType.toLowerCase()
+    ) {
       return headerIndex;
     }
   }
@@ -81,17 +90,97 @@ function findColumnIndex(table, filterType) {
 }
 
 // Bind the filterTable function to the dropdowns once the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('statusFilter').onchange = function() {
-    filterTable('status', this.value);
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("statusFilter").onchange = function () {
+    filterTable("status", this.value);
   };
-  document.getElementById('quarterFilter').onchange = function() {
-    filterTable('quarter', this.value);
+  document.getElementById("quarterFilter").onchange = function () {
+    filterTable("quarter", this.value);
   };
-  document.getElementById('functionFilter').onchange = function() {
-    filterTable('business function', this.value); // Use the correct lowercase filterType
+  document.getElementById("functionFilter").onchange = function () {
+    filterTable("business function", this.value); // Use the correct lowercase filterType
   };
-  document.getElementById('categoryFilter').onchange = function() {
-    filterTable('task category', this.value); // Use the correct lowercase filterType
+  document.getElementById("categoryFilter").onchange = function () {
+    filterTable("task category", this.value); // Use the correct lowercase filterType
   };
 });
+
+// Sign Up and In
+
+// sign in
+const signin_form = document.querySelector("#signinForm");
+signin_form.addEventListener("submit_signin", (e) => {
+  e.preventDefault();
+  // grab email and password
+
+  const email = document.querySelector("#email_siginin").value;
+  const password = document.querySelector("#password_signin").value;
+
+  // authenticate with firebase
+  auth.signInWithEmailAndPassword(email, password).then((credentials) => {
+    console.log(`${credentials.user.email} is now signed in`);
+
+    signin_form.reset();
+
+    // close the modal
+    close_modal("signin-modal");
+  });
+});
+
+// checking user authentication status
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // console.log('user is signed in')
+    alert("The user is now signed in");
+    //show user email address at the navigation bar
+    document.querySelector("#email_signin").innerHTML = user.email;
+  } else {
+    // console.log('user is now signed out')
+    alert("The user is now signed out");
+    document.querySelector("#email_signin").innerHTML = "";
+  }
+});
+
+// Restricting Access
+
+// Define a list of allowed users
+const allowedUsers = [
+  { email: "joanne.esser@wisc.edu", password: "password1" },
+  { email: "nhia.vang@wisc.edu", password: "password2" },
+  { email: "megan.armstrong@wisc.edu", password: "password3" },
+  { email: "kymberly.aebly@wisc.edu", password: "password4" },
+  { email: "susan.laufenberg@wisc.edu", password: "password5" },
+  { email: "kathy.mccord@wisc.edu", password: "password6" },
+  { email: "dswagner2@wisc.edu", password: "password7" },
+];
+
+// Function to authenticate a user
+async function authenticateUser(email, password) {
+  const allowedUser = allowedUsers.find(
+    (user) => user.email === email && user.password === password
+  );
+
+  if (allowedUser) {
+    try {
+      // Sign in the user using Firebase Authentication
+      const userCredential = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+      console.log("Successfully authenticated user:", user.email);
+      return user;
+    } catch (error) {
+      console.error("Error authenticating user:", error.message);
+      return null;
+    }
+  } else {
+    console.error("User not allowed to log in.");
+    return null;
+  }
+}
+
+// // Example usage
+// const emailToAuthenticate = "user1@example.com";
+// const passwordToAuthenticate = "password1";
+
+// authenticateUser(emailToAuthenticate, passwordToAuthenticate);

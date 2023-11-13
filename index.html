@@ -1,423 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wisconsin School of Business</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
     <!-- <link rel="stylesheet" href="style.css" /> 
     <form action="#" method="post" onsubmit="return validateForm()"> -->
 
     <!-- Linking to external JavaScript file -->
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="modal" id="signinModal">
-        <div class="modal-background" id="signinModalBg"></div>
-        <div class="modal-content p-6 has-background-danger-dark">
-            <h1 class="is-size-3 title has-text-light has-text-centered">Sign In</h1>
-            <form id="signinForm">
-                <div class="field">
-                    <label class="label has-text-light">Email</label>
-                    <div class="control">
-                        <input type="email" class="input" id="email_signin">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label has-text-light">Password</label>
-                    <div class="control">
-                        <input type="password" class="input" id="password_signin">
-                    </div>
-                </div>
-                <div class="field">
-                    <class class="control">
-                        <button class="button">Submit</button>
-                    </class>
-                </div>
-                <div class="has-text-white" id="signinError"></div>
-            </form>
-        </div>
+      <div class="modal-background" id="signinModalBg"></div>
+      <div class="modal-content p-6 has-background-danger-dark">
+        <h1 class="is-size-3 title has-text-light has-text-centered">
+          Sign In
+        </h1>
+        <form id="signinForm">
+          <div class="field">
+            <label class="label has-text-light">Email</label>
+            <div class="control">
+              <input type="email" class="input" id="email_signin" />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Password</label>
+            <div class="control">
+              <input type="password" class="input" id="password_signin" />
+            </div>
+          </div>
+          <div class="field">
+            <class class="control">
+              <button class="button" id="submit_signin">Submit</button>
+            </class>
+          </div>
+          <div class="has-text-white" id="signinError"></div>
+        </form>
+      </div>
     </div>
 
     <!-- Header -->
     <nav>
-        <div class="navbar has-background-danger-dark">
-            <div class="navbar-item">
-                <span></span>
-            </div>
-            <div class="navbar-burger">
-                <span></span>
-                <span></span>
-            </div>
-            <div class="navbar-start has-text">
-                <div class="navbar-item">
-                    <img src="black-center-UWlogo-print.png" alt="W Logo">
-                </div>
-            </div>
+      <div class="navbar has-background-danger-dark">
+        <div class="navbar-item">
+          <span></span>
+        </div>
+        <div class="navbar-burger">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="navbar-start has-text">
+          <div class="navbar-item">
+            <img src="black-center-UWlogo-print.png" alt="W Logo" />
+          </div>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <a
+              class="button"
+              href="index.html"
+              onmouseover="changeHeaderColor()"
+              onmouseout="revertHeaderColor()"
+              >Home</a
+            >
+          </div>
+          <div class="navbar-menu is-active">
             <div class="navbar-end">
-                <div class="navbar-item">
-                    <a class="button" href="index.html" 
-                       onmouseover="changeHeaderColor()" 
-                       onmouseout="revertHeaderColor()">Home</a>
+                <div class="navbar-item signedout">
+                    <a id="signupbtn">Sign Up</a>
                 </div>
-                <div class="navbar-item">
-                    <a id="tableviewbutton" class="button"
-                       onmouseover="changeHeaderColor()" 
-                       onmouseout="revertHeaderColor()">Table View</a>
-                </div>
-                <div class="navbar-item">
-                    <a class="button" href="#calendar"
-                       onmouseover="changeHeaderColor()" 
-                       onmouseout="revertHeaderColor()">Calendar View</a>
+                <div class="navbar-item signedout">
+                    <a id="signinbtn">Sign In</a>
                 </div>
             </div>
         </div>
+      </div>
     </nav>
 
     <header>
-        <figure class="image">
-            <img src="wsbbanner.jpeg" alt="Wisco Banner">
-        </figure>
+      <figure class="image">
+        <img src="wsbbanner.jpeg" alt="Wisco Banner" />
+      </figure>
     </header>
 
     <main class="has-background-light">
-        <div class="section">
-            <div class="container">
-                <p class="title is-size-1 has-text-centered">
-                    WISCONSIN SCHOOL OF BUSINESS
-                </p>
-                <p class="title has-text-centered">ACADEMIC PROGRAM MANAGER TASK ORGANIZER</p>
-                <p class="has-text-centered has-text-danger-dark subtitle is-size-4 p-3">
-                    Login to your department to view upcoming tasks, filter on the table task list, and view the calendar
-                </p>
-            </div>
-            <div class="field">
-                <div class="has-text-centered">
-                    <button id="signinbtn" class="button is-danger" style="background-color: #aa0707;">
-                        Sign In
-                    </button>
-                </div>
-            </div>
+      <div class="section">
+        <div class="container">
+          <p class="title is-size-1 has-text-centered">
+            WISCONSIN SCHOOL OF BUSINESS
+          </p>
+          <p class="title has-text-centered">
+            ACADEMIC PROGRAM MANAGER TASK ORGANIZER
+          </p>
+          <p
+            class="has-text-centered has-text-danger-dark subtitle is-size-4 p-3"
+          >
+            Login to your department to view upcoming tasks, filter on the table
+            task list, and view the calendar
+          </p>
         </div>
+        <div class="field">
+          <div class="has-text-centered">
+            <button
+              id="signinbtn"
+              class="button is-danger"
+              style="background-color: #aa0707"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
     <div>
-        <div class="tab-container">
-            <style>
-                * {box-sizing: border-box}
-                
-                /* Set height of body and the document to 100% */
-                body, html {
-                  height: 100%;
-                  margin: 0;
-                  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                }
-                
-                /* Style tab links */
-                .tablink {
-                  background-color: #aa0707;
-                  color: white;
-                  float: left;
-                  border: none;
-                  outline: none;
-                  cursor: pointer;
-                  padding: 14px 16px;
-                  font-size: 17px;
-                  width: 33.333%;
-                }
-                
-                .tablink:hover {
-                  background-color: black;
-                }
-                
-                /* Style the tab content (and add height:100% for full page content) */
-                .tabcontent {
-                  color: white;
-                  display: none;
-                  padding: 100px 20px;
-                  height: 100%;
-                }
-                
-                #Announcements {background-color: black; }
-                #Tasks {background-color: black;}
-                #Calendar {background-color: black;}
-            </style>
-                <button class="tablink" onclick="openPage('Announcements', this, 'black')" id="defaultOpen">Announcements</button>
-                <button class="tablink" onclick="openPage('Tasks', this, 'black')" >Tasks</button>
-                <button class="tablink" onclick="openPage('Calendar', this, 'black')">Calendar</button>
-                
-                <div id="Announcements" class="tabcontent">
-                  <h3>Announcements</h3>
-                  <p>Thanks for all of your hard work!</p>
+      <div class="tab-container">
+        <style>
+          * {
+            box-sizing: border-box;
+          }
 
-                </div>
-                
-                <div id="Tasks" class="tabcontent">
-                  <div id="tableContent">
-                    <table class="table" border="1" width="90%" align="center">
-                        <!-- filter row with dropdowns -->
-                        <tr>
-                            <!-- Status Filter -->
-                            <td>
-                                <select id="statusFilter">
-                                    <option value="">All</option>
-                                    <option value="Complete">Complete</option>
-                                    <option value="InProgress">In Progress</option>
-                                    <option value="OnHold">On Hold</option>
-                                </select>
-                            </td>
-                <!-- Quarter Filter -->
-                            <td>
-                                <select id="quarterFilter">
-                                    <option value="">All</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
-                            </td>
-                <!-- Business Function Filter -->
-                            <td>
-                                <select id="functionFilter">
-                                    <option value="">All</option>
-                                    <option value="Curricular">Curricular</option>
-                                    <option value="Administrative">Administrative</option>
-                                    <option value="Operational">Operational</option>
-                                    <option value="FMO">FMO</option>
-                                    <option value="Human Resources">Human Resources</option>
-                                </select>
-                            </td>
-                <!-- Task Category Filter -->
-                            <td>
-                                <select id="categoryFilter">
-                                    <option value="">All</option>
-                                    <option value="Enrollment">Enrollment</option>
-                                    <option value="Recruitment">Recruitment</option>
-                                    <option value="Workshop">Workshop</option>
-                                    <option value="ShopUW">ShopUW</option>
-                                    <option value="Research Opportunities">Research Opportunities</option>
-                                </select>
-                            </td>
-                        </tr>
-            
-            
-            
-            
-                        <!-- table headers -->
-                        <tr>
-                            <th>Status</th>
-                            <th>Quarter</th>
-                            <th>Business Function</th>
-                            <th>Task Category</th>
-                            <th>Task</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Collaborators</th>
-                            <th>Comments</th>
-                            <th></th>
-                        </tr>
-                        <!-- table content -->
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>2</td>
-                            <td>Curricular</td>
-                            <td>Enrollment</td>
-                            <td>Spring priority enrollment begins</td>
-                            <td></td>
-                            <td>11/13/24</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>3</td>
-                            <td>Human Resources</td>
-                            <td>Recruitment</td>
-                            <td>TA Interviews</td>
-                            <td>03/01/24</td>
-                            <td>03/31/24</td>
-                            <td>Marketing Instructors</td>
-                            <td></td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>4</td>
-                            <td>Operational</td>
-                            <td>Workshop</td>
-                            <td>Sobic Career Workshop</td>
-                            <td>04/21/24</td>
-                            <td>04/21/24</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>1</td>
-                            <td>Curricular</td>
-                            <td>Enrollment</td>
-                            <td>Summer term purged for students who did not enroll for the Summer and Fall terms</td>
-                            <td></td>
-                            <td>09/30/24</td>
-                            <td></td>
-                            <td>If Summer admits don’t have Summer enrollment but have Fall enrollment, they are processed as admit term changes.</td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>4</td>
-                            <td>FMO</td>
-                            <td>ShopUW</td>
-                            <td>External Purchase Requistions</td>
-                            <td></td>
-                            <td>04/03/24</td>
-                            <td></td>
-                            <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>4</td>
-                            <td>FMO</td>
-                            <td>ShopUW</td>
-                            <td>External Purchase Requistions</td>
-                            <td></td>
-                            <td>04/03/24</td>
-                            <td></td>
-                            <td>External Purchase Requisition(s) for goods and services expected to be delivered in FY 2024 may begin to be created for FY 2024 in ShopUW+</td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="statuscheckbox"></label>
-                                <input type="checkbox" id="statuscheckbox" name="statuscheckbox">
-                            </td>
-                            <td>1</td>
-                            <td>Human Resources</td>
-                            <td>Research Opportunities</td>
-                            <td>Research Assistants: June Lim</td>
-                            <td>01/02/24</td>
-                            <td>08/18/24</td>
-                            <td>Neeraj Arora</td>
-                            <td>Dani B: Summer '23</td>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                        </tr>
-                    </table>
-                
-                    <br>
-                
-                    <!-- edit button and add row button -->
-                    <div class="field">
-                        <div class="has-text-centered">
-                            <button class="button is-danger">
-                                Add Row
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                
-                <div id="Calendar" class="tabcontent">
-                  <iframe src="https://calendar.google.com/calendar/embed?src=agyoumans%40wisc.edu&ctz=America%2FChicago" style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
-                  </iframe>
-                </div>
-                
-            <script>
-                function openPage(pageName,elmnt,color) {
-                  var i, tabcontent, tablinks;
-                  tabcontent = document.getElementsByClassName("tabcontent");
-                  for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                  }
-                  tablinks = document.getElementsByClassName("tablink");
-                  for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].style.backgroundColor = "";
-                  }
-                  document.getElementById(pageName).style.display = "block";
-                  elmnt.style.backgroundColor = color;
-                }
-                
-                // Get the element with id="defaultOpen" and click on it
-                document.getElementById("defaultOpen").click();
-            </script>
+          /* Set height of body and the document to 100% */
+          body,
+          html {
+            height: 100%;
+            margin: 0;
+            font-family: Cambria, Cochin, Georgia, Times, "Times New Roman",
+              serif;
+          }
+
+          /* Style tab links */
+          .tablink {
+            background-color: #aa0707;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 33.333%;
+          }
+
+          .tablink:hover {
+            background-color: black;
+          }
+
+          /* Style the tab content (and add height:100% for full page content) */
+          .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+          }
+
+          #Announcements {
+            background-color: black;
+          }
+          #Tasks {
+            background-color: black;
+          }
+          #Calendar {
+            background-color: black;
+          }
+        </style>
+        <button
+          class="tablink"
+          onclick="openPage('Announcements', this, 'black')"
+          id="defaultOpen"
+        >
+          Announcements
+        </button>
+        <button class="tablink" onclick="openPage('Tasks', this, 'black')">
+          Tasks
+        </button>
+        <button class="tablink" onclick="openPage('Calendar', this, 'black')">
+          Calendar
+        </button>
+
+        <div id="Announcements" class="tabcontent">
+          <h3>Announcements</h3>
+          <p>Thanks for all of your hard work!</p>
         </div>
+
+        <div id="Tasks" class="tabcontent">
+          <div id="tableContent">
+            <table class="table" border="1" width="90%" align="center">
+              <!-- filter row with dropdowns -->
+              <tr>
+                <!-- Status Filter -->
+                <td>
+                  <select id="statusFilter">
+                    <option value="">All</option>
+                    <option value="Complete">Complete</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="OnHold">On Hold</option>
+                  </select>
+                </td>
+                <!-- Quarter Filter -->
+                <td>
+                  <select id="quarterFilter">
+                    <option value="">All</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </td>
+                <!-- Business Function Filter -->
+                <td>
+                  <select id="functionFilter">
+                    <option value="">All</option>
+                    <option value="Curricular">Curricular</option>
+                    <option value="Administrative">Administrative</option>
+                    <option value="Operational">Operational</option>
+                    <option value="FMO">FMO</option>
+                    <option value="Human Resources">Human Resources</option>
+                  </select>
+                </td>
+                <!-- Task Category Filter -->
+                <td>
+                  <select id="categoryFilter">
+                    <option value="">All</option>
+                    <option value="Enrollment">Enrollment</option>
+                    <option value="Recruitment">Recruitment</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="ShopUW">ShopUW</option>
+                    <option value="Research Opportunities">
+                      Research Opportunities
+                    </option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- table headers -->
+              <tr>
+                <th>Status</th>
+                <th>Quarter</th>
+                <th>Business Function</th>
+                <th>Task Category</th>
+                <th>Task</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Collaborators</th>
+                <th>Comments</th>
+                <th></th>
+              </tr>
+              <!-- table content -->
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>2</td>
+                <td>Curricular</td>
+                <td>Enrollment</td>
+                <td>Spring priority enrollment begins</td>
+                <td></td>
+                <td>11/13/24</td>
+                <td></td>
+                <td></td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>3</td>
+                <td>Human Resources</td>
+                <td>Recruitment</td>
+                <td>TA Interviews</td>
+                <td>03/01/24</td>
+                <td>03/31/24</td>
+                <td>Marketing Instructors</td>
+                <td></td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>4</td>
+                <td>Operational</td>
+                <td>Workshop</td>
+                <td>Sobic Career Workshop</td>
+                <td>04/21/24</td>
+                <td>04/21/24</td>
+                <td></td>
+                <td></td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>1</td>
+                <td>Curricular</td>
+                <td>Enrollment</td>
+                <td>
+                  Summer term purged for students who did not enroll for the
+                  Summer and Fall terms
+                </td>
+                <td></td>
+                <td>09/30/24</td>
+                <td></td>
+                <td>
+                  If Summer admits don’t have Summer enrollment but have Fall
+                  enrollment, they are processed as admit term changes.
+                </td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>4</td>
+                <td>FMO</td>
+                <td>ShopUW</td>
+                <td>External Purchase Requistions</td>
+                <td></td>
+                <td>04/03/24</td>
+                <td></td>
+                <td>
+                  External Purchase Requisition(s) for goods and services
+                  expected to be delivered in FY 2024 may begin to be created
+                  for FY 2024 in ShopUW+
+                </td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>4</td>
+                <td>FMO</td>
+                <td>ShopUW</td>
+                <td>External Purchase Requistions</td>
+                <td></td>
+                <td>04/03/24</td>
+                <td></td>
+                <td>
+                  External Purchase Requisition(s) for goods and services
+                  expected to be delivered in FY 2024 may begin to be created
+                  for FY 2024 in ShopUW+
+                </td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="statuscheckbox"></label>
+                  <input
+                    type="checkbox"
+                    id="statuscheckbox"
+                    name="statuscheckbox"
+                  />
+                </td>
+                <td>1</td>
+                <td>Human Resources</td>
+                <td>Research Opportunities</td>
+                <td>Research Assistants: June Lim</td>
+                <td>01/02/24</td>
+                <td>08/18/24</td>
+                <td>Neeraj Arora</td>
+                <td>Dani B: Summer '23</td>
+                <td>
+                  <button>Edit</button>
+                </td>
+              </tr>
+            </table>
+
+            <br />
+
+            <!-- edit button and add row button -->
+            <div class="field">
+              <div class="has-text-centered">
+                <button class="button is-danger">Add Row</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="Calendar" class="tabcontent">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=agyoumans%40wisc.edu&ctz=America%2FChicago"
+            style="border: 0"
+            width="800"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+          >
+          </iframe>
+        </div>
+
+        <script>
+          function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+          }
+
+          // Get the element with id="defaultOpen" and click on it
+          document.getElementById("defaultOpen").click();
+        </script>
+      </div>
     </div>
 
     <footer>
-        <div class="footer has-background-danger-dark">
-            <div class="content has-text-centered has-text-light has-text-weight-bold">
-                <p>Academic Program Manager Task Organizer</p>
-            </div>
-            <div class="content has-text-centered has-text-light">
-                <p>975 University Ave, Madison, WI 53706</p>
-            </div>
+      <div class="footer has-background-danger-dark">
+        <div
+          class="content has-text-centered has-text-light has-text-weight-bold"
+        >
+          <p>Academic Program Manager Task Organizer</p>
         </div>
+        <div class="content has-text-centered has-text-light">
+          <p>975 University Ave, Madison, WI 53706</p>
+        </div>
+      </div>
     </footer>
 
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
 
- <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
 
-      <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-analytics.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
 
-      <!-- Add Firebase products that you want to use -->
-      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script type="text/javascript">
+      const firebaseConfig = {
+        apiKey: "AIzaSyCADS1yH995TK577jKcj5XcxvJB9rYXv1E",
+        authDomain: "slab-term-project.firebaseapp.com",
+        projectId: "slab-term-project",
+        storageBucket: "slab-term-project.appspot.com",
+        messagingSenderId: "485095951674",
+        appId: "1:485095951674:web:f7aea6c2001a6e3c19d403",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // define authentication variable
+      const auth = firebase.auth();
+      const db = firebase.firestore();
 
-      <script type="text/javascript">
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyCADS1yH995TK577jKcj5XcxvJB9rYXv1E",
-            authDomain: "slab-term-project.firebaseapp.com",
-            projectId: "slab-term-project",
-            storageBucket: "slab-term-project.appspot.com",
-            messagingSenderId: "485095951674",
-            appId: "1:485095951674:web:f7aea6c2001a6e3c19d403"
-            };
-                // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-                // define authentication variable
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-      </script>
-      <script src="app.js"></script>
-</body>
+      // firebase
+      //   .auth()
+      //   .signInWithEmailAndPassword("alloweduser@example.com", "password")
+      //   .then((userCredential) => {
+      //     const user = userCredential.user;
+      //     console.log("Signed in as:", user.email);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error signing in:", error);
+      //   });
+    </script>
+    <script src="app.js"></script>
+  </body>
 </html>
