@@ -128,18 +128,18 @@ signin_form.addEventListener("submit_signin", (e) => {
 });
 
 // checking user authentication status
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    // console.log('user is signed in')
-    alert("The user is now signed in");
-    //show user email address at the navigation bar
-    document.querySelector("#email_signin").innerHTML = user.email;
-  } else {
-    // console.log('user is now signed out')
-    alert("The user is now signed out");
-    document.querySelector("#email_signin").innerHTML = "";
-  }
-});
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     // console.log('user is signed in')
+//     alert("The user is now signed in");
+//     //show user email address at the navigation bar
+//     document.querySelector("#email_signin").innerHTML = user.email;
+//   } else {
+//     // console.log('user is now signed out')
+//     // alert("The user is now signed out");
+//     document.querySelector("#email_signin").innerHTML = "";
+//   }
+// });
 
 // Restricting Access
 
@@ -179,8 +179,8 @@ async function authenticateUser(email, password) {
   }
 }
 
-// // Example usage
-// const emailToAuthenticate = "user1@example.com";
-// const passwordToAuthenticate = "password1";
+// Example usage
+const emailToAuthenticate = document.querySelector("#email").value;
+const passwordToAuthenticate = document.querySelector("#password").value;
 
-// authenticateUser(emailToAuthenticate, passwordToAuthenticate);
+authenticateUser(emailToAuthenticate, passwordToAuthenticate);
