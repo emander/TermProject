@@ -244,7 +244,9 @@ document.getElementById("defaultOpen").click();
 
 let submitrowbtn = document.querySelector('#submitrowbtn');
 
-submitrowbtn.addEventListener('click', () => {
+submitrowbtn.addEventListener('click', function(event) {
+
+  event.preventDefault();
 
   let tblrow = {
     quarter: document.querySelector("#quarter").value,
@@ -257,6 +259,6 @@ submitrowbtn.addEventListener('click', () => {
     comments: document.querySelector("#comments").value,
   };
 
-  db.collection("tableview").add(tblrow).then(() => alert("new person added!"));
+  db.collection("tableview").add(tblrow).then(() => alert("new row added!"));
 });
 
