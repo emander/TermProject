@@ -262,3 +262,39 @@ submitrowbtn.addEventListener('click', function(event) {
   db.collection("tableview").add(tblrow).then(() => alert("new row added!"));
 });
 
+// show rows in table on website
+
+db.collection("tableview").get().then((data) => {
+  let docs = data.docs;
+
+  let fullTable = document.querySelector("#fullTable");
+  let tbody = fullTable.querySelector("tbody");
+
+  docs.forEach(doc =>{
+    let newRow = document.createElement("tr");
+    newRow.innerHTML=`
+      <td>
+        <label for="statuscheckbox"></label>
+        <input
+          type="checkbox"
+          name="statuscheckbox"
+        />
+      </td>
+      <td>${doc.data().quarter}</td>
+      <td>${doc.data().bisfunction}</td>
+      <td>${doc.data().taskcat}</td>
+      <td>${doc.data().task}</td>
+      <td>${doc.data().startdate}</td>
+      <td>${doc.data().enddate}</td>
+      <td>${doc.data().collaborators}</td>
+      <td>${doc.data().comments}</td>
+      <td>
+        <button>Edit</button>
+      </td>
+    `;
+
+    tbody.appendChild(newRow);
+  });
+
+});
+
