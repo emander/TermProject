@@ -1,7 +1,10 @@
 let signinbtn = document.querySelector("#signinbtn");
 let signinModal = document.querySelector("#signinModal");
 let signinModalBg = document.querySelector("#signinModalBg");
-const signup_form = document.querySelector("#signup_form");
+
+let signupbtn = document.querySelector("#signupbtn");
+let signupModal = document.querySelector("#signup-modal");
+let signupModalBg = document.querySelector("#signup-modalbg");
 
 signinbtn.addEventListener("click", () => {
   console.log("test");
@@ -11,6 +14,11 @@ signinbtn.addEventListener("click", () => {
 signinModalBg.addEventListener("click", () => {
   signinModal.classList.remove("is-active");
 });
+
+// functions
+function close_modal(modal_id) {
+  document.querySelector(`#${modal_id}`).classList.remove("is-active");
+}
 
 // Brady work on filters
 
@@ -107,13 +115,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Sign Up and In
 
+// Sign Up
+signup_form.addEventListener("submit", (e) => {
+  // prevent auto refresh
+  e.preventDefault();
+
+  // grab email and password
+  const email = document.querySelector("#email").value;
+  const password = document.querySelector("#password").value;
+
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((credentials) => {
+      console.log(
+        `UID ${credentials.user.uid} with ${credentials.user.email} has signed up`
+      );
+
+      // clear the form
+      signup_form.reset();
+
+      // close the modal
+      close_modal("signup-modal");
+    })
+    .catch((err) => {
+      // display error message on modal
+      const error = document.querySelector(".error");
+      error.innerHTML = `<p>${err.message}</p>`;
+      // console.log(err.message);
+    });
+});
+
+// sign out
+// signoutbtn.addEventListener("click", () => {
+//   auth.signOut().then(() => {
+//     console.log("user signed out");
+//   });
+// });
+
+// Sign Up Modal Link
+signupbtn.addEventListener("click", () => {
+  signupModal.classList.add("is-active");
+});
+
+signupModalBg.addEventListener("click", () => {
+  signupModal.classList.remove("is-active");
+});
+
+// Sign in and Out
+// const allowedEmails = [
+//   "joanne.esser@wisc.edu",
+//   "nhia.vang@wisc.edu",
+//   "megan.armstrong@wisc.edu",
+//   "kymberly.aebly@wisc.edu",
+//   "susan.laufenberg@wisc.edu",
+//   "kathy.mccord@wisc.edu",
+//   "dswagner2@wisc.edu",
+// ];
+
 // sign in
 const signin_form = document.querySelector("#signinForm");
-signin_form.addEventListener("submit_signin", (e) => {
+signin_form.addEventListener("submit", (e) => {
   e.preventDefault();
   // grab email and password
 
-  const email = document.querySelector("#email_siginin").value;
+  const email = document.querySelector("#email_signin").value;
   const password = document.querySelector("#password_signin").value;
 
   // authenticate with firebase
@@ -128,82 +193,22 @@ signin_form.addEventListener("submit_signin", (e) => {
 });
 
 // checking user authentication status
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     // console.log('user is signed in')
-//     alert("The user is now signed in");
-//     //show user email address at the navigation bar
-//     document.querySelector("#email_signin").innerHTML = user.email;
-//   } else {
-//     // console.log('user is now signed out')
-//     // alert("The user is now signed out");
-//     document.querySelector("#email_signin").innerHTML = "";
-//   }
-// });
-
-// Restricting Access
-
-// // Define a list of allowed users
-// const allowedUsers = [
-//   { email: "joanne.esser@wisc.edu", password: "password1" },
-//   { email: "nhia.vang@wisc.edu", password: "password2" },
-//   { email: "megan.armstrong@wisc.edu", password: "password3" },
-//   { email: "kymberly.aebly@wisc.edu", password: "password4" },
-//   { email: "susan.laufenberg@wisc.edu", password: "password5" },
-//   { email: "kathy.mccord@wisc.edu", password: "password6" },
-//   { email: "dswagner2@wisc.edu", password: "password7" },
-// ];
-
-// // Function to authenticate a user
-// async function authenticateUser(email, password) {
-//   const allowedUser = allowedUsers.find(
-//     (user) => user.email === email && user.password === password
-//   );
-
-//   if (allowedUser) {
-//     try {
-//       // Sign in the user using Firebase Authentication
-//       const userCredential = await firebase
-//         .auth()
-//         .signInWithEmailAndPassword(email, password);
-//       const user = userCredential.user;
-//       console.log("Successfully authenticated user:", user.email);
-//       return user;
-//     } catch (error) {
-//       console.error("Error authenticating user:", error.message);
-//       return null;
-//     }
-//   } else {
-//     console.error("User not allowed to log in.");
-//     return null;
-//   }
-// }
-
-// // Example usage
-// const emailToAuthenticate = document.querySelector("#email").value;
-// const passwordToAuthenticate = document.querySelector("#password").value;
-
-// authenticateUser(emailToAuthenticate, passwordToAuthenticate);
-
-// Sign in and Out
-const allowedEmails = [
-  "joanne.esser@wisc.edu",
-  "nhia.vang@wisc.edu",
-  "megan.armstrong@wisc.edu",
-  "kymberly.aebly@wisc.edu",
-  "susan.laufenberg@wisc.edu",
-  "kathy.mccord@wisc.edu",
-  "dswagner2@wisc.edu",
-];
-
-function signIn() {
-  const emailInput = document.getElementById("email_signin").value;
-
-  // Check if the entered email is in the list of allowed emails
-  if (allowedEmails.includes(emailInput)) {
-    alert("Sign in successful!");
-    // You might want to redirect or perform additional actions upon successful sign-in
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    // console.log('user is signed in')
+    configure_message_bar("The user is now signed in");
+    //show user email address at the navigation bar
+    document.querySelector("#user-email").innerHTML = user.email;
   } else {
-    alert("Invalid email. Please try again.");
+    // console.log('user is now signed out')
+    configure_message_bar("The user is now signed out");
+    document.querySelector("#user-email").innerHTML = "";
   }
-}
+});
+
+// Sign Out
+// function signOut() {
+//   auth.signOut()
+//       .then(() => console.log("Sign out successful"))
+//       .catch(error => console.error("Sign out failed", error));
+// }

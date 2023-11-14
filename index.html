@@ -45,6 +45,8 @@
       </div>
     </div>
 
+    
+
     <!-- Header -->
     <nav>
       <div class="navbar has-background-danger-dark">
@@ -72,9 +74,45 @@
           </div>
           <div class="navbar-menu is-active">
             <div class="navbar-end">
-                <!-- <div class="navbar-item">
-                    <a id="signinbtn">Sign In</a>
-                </div> -->
+                <div class="navbar-item">
+                    <a class="button" id="signupbtn">Sign Up</a>
+                    <div class="modal" id="signup-modal">
+                      <div class="modal-background" id="signup-modalbg"></div>
+                      <div class="modal-content p-6 has-background-white">
+                          <h1 class="is-size-3 title">Sign Up!</h1>
+                          <form id="signup_form">
+                              <!-- Email -->
+                              <div class="field">
+                                  <label class="label">Email</label>
+                                  <div class="control">
+                                      <input type="email" id="email">
+                                  </div>
+              
+                              </div>
+                              <!-- Password -->
+                              <div class="field">
+                                  <label class="label">Password</label>
+                                  <div class="control">
+                                      <input type="password" id="password">
+                                  </div>
+                                </div>
+              
+                              <!-- submit -->
+                              <div class="field">
+                                  <div class="control">
+                                      <button class="m-3 button is-link" id="sum_submit">Submit</button>
+                                  </div>
+                              </div>
+              
+                              <!-- div error -->
+                              <div class="error has-text-danger">
+              
+                              </div>
+              
+                          </form>
+                      </div>
+                  </div>
+                </div>
             </div>
         </div>
       </div>
