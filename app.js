@@ -1,3 +1,34 @@
+// functions
+
+function del_doc(id){
+  db.collection("tableview").doc(id).delete().then(() => alert("row deleted"));
+};
+
+function update_doc(ele, id){
+  console.log(ele);
+  let inputs = ele.parentNode.parentNode.querySelectorAll("input");
+
+  inputs[0].type = "number";
+  inputs[1].type = "text";
+  inputs[2].type = "text";
+  inputs[3].type = "text";
+  inputs[4].type = "date";
+  inputs[5].type = "date";
+  inputs[6].type = "text";
+  inputs[7].type = "text";
+
+  db.collection("tableview").doc(id).update({
+      quarter: inputs[0].value,
+      bisfunction: inputs[1].value,
+      taskcat: inputs[2].value,
+      task: inputs[3].value,
+      startdate: inputs[4].value,
+      enddate: inputs[5].value,
+      collaborators: inputs[6].value,
+      comments: inputs[7].value,
+  });
+};
+
 // sign in modal
 
 let signinbtn = document.querySelector("#signinbtn");
@@ -275,21 +306,18 @@ db.collection("tableview").get().then((data) => {
     newRow.innerHTML=`
       <td>
         <label for="statuscheckbox"></label>
-        <input
-          type="checkbox"
-          name="statuscheckbox"
-        />
       </td>
-      <td>${doc.data().quarter}</td>
-      <td>${doc.data().bisfunction}</td>
-      <td>${doc.data().taskcat}</td>
-      <td>${doc.data().task}</td>
-      <td>${doc.data().startdate}</td>
-      <td>${doc.data().enddate}</td>
-      <td>${doc.data().collaborators}</td>
-      <td>${doc.data().comments}</td>
+      <td>${doc.data().quarter} <input type="hidden" value = "${doc.data().quarter}"/></td>
+      <td>${doc.data().bisfunction} <input type="hidden" value = "${doc.data().bisfunction}"/></td>
+      <td>${doc.data().taskcat} <input type="hidden" value = "${doc.data().taskcat}"/></td>
+      <td>${doc.data().task} <input type="hidden" value = "${doc.data().task}"/></td>
+      <td>${doc.data().startdate} <input type="hidden" value = "${doc.data().startdate}"/></td>
+      <td>${doc.data().enddate} <input type="hidden" value = "${doc.data().enddate}"/></td>
+      <td>${doc.data().collaborators} <input type="hidden" value = "${doc.data().collaborators}"/></td>
+      <td>${doc.data().comments} <input type="hidden" value = "${doc.data().comments}"/></td>
       <td>
-        <button>Edit</button>
+        <button onclick="update_doc(this, '${doc.id}')">Edit</button>
+        <button onclick="del_doc('${doc.id}')">Delete</button>
       </td>
     `;
 
