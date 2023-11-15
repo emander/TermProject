@@ -32,6 +32,36 @@ function update_doc(ele, id) {
   });
 }
 
+function close_modal(modal_id) {
+  document.querySelector(`#${modal_id}`).classList.remove("is-active");
+}
+
+function validateForm() {
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  // List of allowed email addresses
+  var allowedEmails = [
+    "joanne.esser@wisc.edu",
+    "nhia.vang@wisc.edu",
+    "megan.armstrong@wisc.edu",
+    "kymberly.aebly@wisc.edu",
+    "susan.laufenberg@wisc.edu",
+    "kathy.mccord@wisc.edu",
+    "dswagner2@wisc.edu",
+  ];
+
+  // Check if the email is in the allowed list
+  if (allowedEmails.includes(email) && password.length >= 8) {
+    alert("User successfully validated!");
+    return true; // Allow form submission
+  } else {
+    alert("Invalid email or password!");
+    e.preventDefault();
+    return false; // Prevent form submission
+  }
+}
+
 // sign in modal
 
 let signinbtn = document.querySelector("#signinbtn");
@@ -65,11 +95,6 @@ addrowbtn.addEventListener("click", () => {
 addrowModalBg.addEventListener("click", () => {
   addrowModal.classList.remove("is-active");
 });
-
-// functions
-function close_modal(modal_id) {
-  document.querySelector(`#${modal_id}`).classList.remove("is-active");
-}
 
 // Brady work on filters
 
@@ -164,8 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
-// Sign Up and In
-
 // Sign Up
 signup_form.addEventListener("submit", (e) => {
   // prevent auto refresh
@@ -196,13 +219,6 @@ signup_form.addEventListener("submit", (e) => {
     });
 });
 
-// sign out
-// signoutbtn.addEventListener("click", () => {
-//   auth.signOut().then(() => {
-//     console.log("user signed out");
-//   });
-// });
-
 // Sign Up Modal Link
 signupbtn.addEventListener("click", () => {
   signupModal.classList.add("is-active");
@@ -213,15 +229,6 @@ signupModalBg.addEventListener("click", () => {
 });
 
 // Sign in and Out
-// const allowedEmails = [
-//   "joanne.esser@wisc.edu",
-//   "nhia.vang@wisc.edu",
-//   "megan.armstrong@wisc.edu",
-//   "kymberly.aebly@wisc.edu",
-//   "susan.laufenberg@wisc.edu",
-//   "kathy.mccord@wisc.edu",
-//   "dswagner2@wisc.edu",
-// ];
 
 // sign in
 const signin_form = document.querySelector("#signinForm");
