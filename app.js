@@ -42,6 +42,8 @@ let signupbtn = document.querySelector("#signupbtn");
 let signupModal = document.querySelector("#signup-modal");
 let signupModalBg = document.querySelector("#signup-modalbg");
 
+const signoutbtn = document.querySelector("#signoutbtn");
+
 signinbtn.addEventListener("click", () => {
   signinModal.classList.add("is-active");
 });
@@ -256,11 +258,12 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Sign Out
-// function signOut() {
-//   auth.signOut()
-//       .then(() => console.log("Sign out successful"))
-//       .catch(error => console.error("Sign out failed", error));
-// };
+function signOut() {
+  auth
+    .signOut()
+    .then(() => console.log("Sign out successful"))
+    .catch((error) => console.error("Sign out failed", error));
+}
 
 function openPage(pageName, elmnt, color) {
   var i, tabcontent, tablinks;
