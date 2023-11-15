@@ -1,3 +1,39 @@
+// functions
+
+function del_doc(id) {
+  db.collection("tableview")
+    .doc(id)
+    .delete()
+    .then(() => alert("row deleted"));
+}
+
+function update_doc(ele, id) {
+  console.log(ele);
+  let inputs = ele.parentNode.parentNode.querySelectorAll("input");
+
+  inputs[0].type = "number";
+  inputs[1].type = "text";
+  inputs[2].type = "text";
+  inputs[3].type = "text";
+  inputs[4].type = "date";
+  inputs[5].type = "date";
+  inputs[6].type = "text";
+  inputs[7].type = "text";
+
+  db.collection("tableview").doc(id).update({
+    quarter: inputs[0].value,
+    bisfunction: inputs[1].value,
+    taskcat: inputs[2].value,
+    task: inputs[3].value,
+    startdate: inputs[4].value,
+    enddate: inputs[5].value,
+    collaborators: inputs[6].value,
+    comments: inputs[7].value,
+  });
+}
+
+// sign in modal
+
 let signinbtn = document.querySelector("#signinbtn");
 let signinModal = document.querySelector("#signinModal");
 let signinModalBg = document.querySelector("#signinModalBg");
@@ -7,12 +43,25 @@ let signupModal = document.querySelector("#signup-modal");
 let signupModalBg = document.querySelector("#signup-modalbg");
 
 signinbtn.addEventListener("click", () => {
-  console.log("test");
   signinModal.classList.add("is-active");
 });
 
 signinModalBg.addEventListener("click", () => {
   signinModal.classList.remove("is-active");
+});
+
+// add row modal
+
+let addrowbtn = document.querySelector("#addrowbtn");
+let addrowModal = document.querySelector("#addrowModal");
+let addrowModalBg = document.querySelector("#addrowModalBg");
+
+addrowbtn.addEventListener("click", () => {
+  addrowModal.classList.add("is-active");
+});
+
+addrowModalBg.addEventListener("click", () => {
+  addrowModal.classList.remove("is-active");
 });
 
 // functions
@@ -211,4 +260,94 @@ auth.onAuthStateChanged((user) => {
 //   auth.signOut()
 //       .then(() => console.log("Sign out successful"))
 //       .catch(error => console.error("Sign out failed", error));
-// }
+// };
+
+function openPage(pageName, elmnt, color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+// add rows to firebase
+
+let submitrowbtn = document.querySelector("#submitrowbtn");
+
+submitrowbtn.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  let tblrow = {
+    quarter: document.querySelector("#quarter").value,
+    bisfunction: document.querySelector("#bisfunction").value,
+    taskcat: document.querySelector("#taskcat").value,
+    task: document.querySelector("#task").value,
+    startdate: document.querySelector("#startdate").value,
+    enddate: document.querySelector("#enddate").value,
+    collaborators: document.querySelector("#collaborators").value,
+    comments: document.querySelector("#comments").value,
+  };
+
+  db.collection("tableview")
+    .add(tblrow)
+    .then(() => alert("new row added!"));
+});
+
+// show rows in table on website
+
+db.collection("tableview")
+  .get()
+  .then((data) => {
+    let docs = data.docs;
+
+    let fullTable = document.querySelector("#fullTable");
+    let tbody = fullTable.querySelector("tbody");
+
+    docs.forEach((doc) => {
+      let newRow = document.createElement("tr");
+      newRow.innerHTML = `
+      <td>
+        <label for="statuscheckbox"></label>
+      </td>
+      <td>${doc.data().quarter} <input type="hidden" value = "${
+        doc.data().quarter
+      }"/></td>
+      <td>${doc.data().bisfunction} <input type="hidden" value = "${
+        doc.data().bisfunction
+      }"/></td>
+      <td>${doc.data().taskcat} <input type="hidden" value = "${
+        doc.data().taskcat
+      }"/></td>
+      <td>${doc.data().task} <input type="hidden" value = "${
+        doc.data().task
+      }"/></td>
+      <td>${doc.data().startdate} <input type="hidden" value = "${
+        doc.data().startdate
+      }"/></td>
+      <td>${doc.data().enddate} <input type="hidden" value = "${
+        doc.data().enddate
+      }"/></td>
+      <td>${doc.data().collaborators} <input type="hidden" value = "${
+        doc.data().collaborators
+      }"/></td>
+      <td>${doc.data().comments} <input type="hidden" value = "${
+        doc.data().comments
+      }"/></td>
+      <td>
+        <button onclick="update_doc(this, '${doc.id}')">Edit</button>
+        <button onclick="del_doc('${doc.id}')">Delete</button>
+      </td>
+    `;
+
+      tbody.appendChild(newRow);
+    });
+  });

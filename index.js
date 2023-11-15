@@ -8,12 +8,26 @@ let signinModal = document.querySelector("#signinModal");
 let signinModalBg = document.querySelector("#signinModalBg");
 
 signinbtn.addEventListener("click", () => {
-  console.log("test");
   signinModal.classList.add("is-active");
 });
 
 signinModalBg.addEventListener("click", () => {
   signinModal.classList.remove("is-active");
+});
+
+// add row modal
+
+let addrowbtn = document.querySelector("#addrowbtn");
+let addrowModal = document.querySelector("#addrowModal");
+let addrowModalBg = document.querySelector("#addrowModalBg");
+
+addrowbtn.addEventListener("click", () => {
+  console.log("test");
+  addrowModal.classList.add("is-active");
+});
+
+addrowModalBg.addEventListener("click", () => {
+  addrowModal.classList.remove("is-active");
 });
 
 // Added a function to sign in the user with their email and password
@@ -54,6 +68,22 @@ function validateForm() {
   signInUser(email, password);
 
   return false; // To prevent form submission since we're handling authentication with Firebase
+}
+
+{
+  // Redirect to tableview.html upon successful validation
+  window.location.href = "tableview.html";
+  return false; // To prevent form submission since we're using client-side redirection
+}
+
+// JavaScript Function to change header color on mouseover
+function changeHeaderColor() {
+  document.querySelector(".mainheader").style.backgroundColor = "orange";
+}
+
+// JavaScript Function to revert header color on mouseout
+function revertHeaderColor() {
+  document.querySelector(".mainheader").style.backgroundColor = "red";
 }
 
 {
