@@ -197,42 +197,26 @@ signup_form.addEventListener("submit", (e) => {
   // grab email and password
   const email = document.querySelector("#email").value;
   const password = document.querySelector("#password").value;
-  var allowedEmails = [
-    "joanne.esser@wisc.edu",
-    "nhia.vang@wisc.edu",
-    "megan.armstrong@wisc.edu",
-    "kymberly.aebly@wisc.edu",
-    "susan.laufenberg@wisc.edu",
-    "kathy.mccord@wisc.edu",
-    "dswagner2@wisc.edu",
-  ];
 
-  // Check if the email is in the allowed list
-  if (allowedEmails.includes(email)) {
-    alert("A");
+  auth
+    .createUserWithEmailAndPassword(email, password)
+    .then((credentials) => {
+      console.log(
+        `UID ${credentials.user.uid} with ${credentials.user.email} has signed up`
+      );
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((credentials) => {
-        console.log(
-          `UID ${credentials.user.uid} with ${credentials.user.email} has signed up`
-        );
+      // clear the form
+      signup_form.reset();
 
-        // clear the form
-        signup_form.reset();
-
-        // close the modal
-        close_modal("signup-modal");
-      })
-      .catch((err) => {
-        // display error message on modal
-        const error = document.querySelector(".error");
-        error.innerHTML = `<p>${err.message}</p>`;
-        // console.log(err.message);
-      });
-  } else {
-    alert("B");
-  }
+      // close the modal
+      close_modal("signup-modal");
+    })
+    .catch((err) => {
+      // display error message on modal
+      const error = document.querySelector(".error");
+      error.innerHTML = `<p>${err.message}</p>`;
+      // console.log(err.message);
+    });
 });
 
 // Sign Up Modal Link
