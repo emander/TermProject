@@ -110,7 +110,46 @@
       </div>
     </div>
 
-    
+    <!-- add announcement modal -->
+    <div class="modal" id="addannModal">
+      <div class="modal-background" id="addannModalBg"></div>
+      <div class="modal-content p-6 has-background-danger-dark">
+        <h1 class="is-size-3 title has-text-light has-text-centered">
+          Add Announcement
+        </h1>
+        <form>
+          <div class="field">
+            <label class="label has-text-light">Date</label>
+            <div class="control">
+              <input type="date" class="input" id="anndate"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Author</label>
+            <div class="control">
+              <input type="text" class="input" id="author"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Job Title</label>
+            <div class="control">
+              <input type="text" class="input" id="jobtitle"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label has-text-light">Announcement</label>
+            <div class="control">
+              <input type="text" class="input" id="announcement"/>
+            </div>
+          </div>
+          <div class="field">
+            <class class="control">
+              <button class="button" id="submitannbtn">Submit</button>
+            </class>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Header -->
     <nav>
@@ -292,21 +331,22 @@
 
         <div id="Announcements" class="tabcontent">
           <div id="announcementsContent">
-            <table class="table" border="1" width="90%" align="center">
+            <table class="table is-bordered" width="90%" align="center" id="annTable">
+              <thead>  
                 <tr>
-                    <th>Date</th>
-                    <th>Author</th>
-                    <th>Title</th>
-                    <th>Announcement</th>
+                  <th>Date</th>
+                  <th>Author</th>
+                  <th>Job Title</th>
+                  <th>Announcement</th>
                 </tr>
-                    <td>11/5/23</td>
-                    <td>Kymberly Aebly</td>
-                    <td>Marketing Manager</td>
-                    <td>Happy Daylight Savings! Enjoy your extra hour of sleep!</td>
+              </thead>
+              <tbody id="annbody">
+                <!-- announcement content -->
+              </tbody>
             </table>
             <div class="field">
                 <div class="has-text-centered">
-                  <button class="button has-text-white" style="background-color: #aa0707;">Add Announcement</button>
+                  <button class="button has-text-white" id="addannbtn" style="background-color: #aa0707;">Add Announcement</button>
                 </div>
               </div>
             </div>

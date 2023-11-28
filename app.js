@@ -96,6 +96,20 @@ addrowModalBg.addEventListener("click", () => {
   addrowModal.classList.remove("is-active");
 });
 
+// add announcement modal
+
+let addannbtn = document.querySelector("#addannbtn");
+let addannModal = document.querySelector("#addannModal");
+let addannModalBg = document.querySelector("#addannModalBg");
+
+addannbtn.addEventListener("click", () => {
+  addannModal.classList.add("is-active");
+});
+
+addannModalBg.addEventListener("click", () => {
+  addannModal.classList.remove("is-active");
+});
+
 // Brady work on filters
 
 // Object to store the current filter states
@@ -305,7 +319,7 @@ function openPage(pageName, elmnt, color) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
-// add rows to firebase
+// add table rows to firebase
 
 let submitrowbtn = document.querySelector("#submitrowbtn");
 
@@ -377,3 +391,53 @@ db.collection("tableview")
       tbody.appendChild(newRow);
     });
   });
+
+  // add announcement rows in firebase
+
+  let submitannbtn = document.querySelector("#submitannbtn");
+
+  submitannbtn.addEventListener("click", function (event) {
+    event.preventDefault();
+  
+    let tblrow = {
+      date: document.querySelector("#anndate").value,
+      author: document.querySelector("#author").value,
+      title: document.querySelector("#jobtitle").value,
+      announcement: document.querySelector("#announcement").value,
+    };
+  
+    db.collection("announcements")
+      .add(tblrow)
+      .then(() => alert("new row added!"));
+  });
+
+  // show rows in table on website
+
+  db.collection("announcement")
+  .get()
+  .then((data) => {
+    let docs = data.docs;
+
+    let annTable = document.querySelector("#annTable");
+    let annbody = annTable.querySelector("#annbody");
+
+    docs.forEach((doc) => {
+      let newRow = document.createElement("tr");
+      newRow.innerHTML = `
+      <td>${doc.data().date} <input type="hidden" value="${doc.data().date}"/>
+      </td>
+      <td>${doc.data().author} <input type="hidden" value="${doc.data().author}"/></td>
+      <td>${doc.data().title} <input type="hidden" value = "${doc.data().title}"/>
+      </td>
+      <td>${doc.data().announcement} <input type="hidden" value = "${doc.data().announcement}"/>
+      </td>
+      <td>
+        <button onclick="update_doc(this, '${doc.id}')">Edit</button>
+        <button onclick="del_doc('${doc.id}')">Delete</button>
+      </td>
+    `;
+
+      annbody.appendChild(newRow);
+    });
+  });
+
