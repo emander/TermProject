@@ -1,13 +1,13 @@
 // functions
 
-function del_doc(id) {
+function del_doc_tv(id) {
   db.collection("tableview")
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-}
+};
 
-function update_doc(ele, id) {
+function update_doc_tv(ele, id) {
   console.log(ele);
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
@@ -30,11 +30,36 @@ function update_doc(ele, id) {
     collaborators: inputs[6].value,
     comments: inputs[7].value,
   });
-}
+};
+
+function del_doc_ann(id) {
+  db.collection("announcements")
+    .doc(id)
+    .delete()
+    .then(() => alert("row deleted"));
+};
+
+function update_doc_ann(ele, id) {
+  console.log(ele);
+  let inputs = ele.parentNode.parentNode.querySelectorAll("input");
+
+  inputs[0].type = "date";
+  inputs[1].type = "text";
+  inputs[2].type = "text";
+  inputs[3].type = "text";
+
+  db.collection("announcements").doc(id).update({
+    date: inputs[0].value,
+    author: inputs[1].value,
+    title: inputs[2].value,
+    announcement: inputs[3].value,
+  });
+};
+
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
-}
+};
 
 function validateForm() {
   var email = document.getElementById("email").value;
@@ -60,7 +85,7 @@ function validateForm() {
     event.preventDefault();
     return false; // Prevent form submission
   }
-}
+};
 
 // sign in modal
 
@@ -383,8 +408,8 @@ db.collection("tableview")
         doc.data().comments
       }"/></td>
       <td>
-        <button onclick="update_doc(this, '${doc.id}')">Edit</button>
-        <button onclick="del_doc('${doc.id}')">Delete</button>
+        <button onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
+        <button onclick="del_doc_tv('${doc.id}')">Delete</button>
       </td>
     `;
 
@@ -413,7 +438,7 @@ db.collection("tableview")
 
   // show rows in table on website
 
-  db.collection("announcement")
+  db.collection("announcements")
   .get()
   .then((data) => {
     let docs = data.docs;
@@ -432,8 +457,8 @@ db.collection("tableview")
       <td>${doc.data().announcement} <input type="hidden" value = "${doc.data().announcement}"/>
       </td>
       <td>
-        <button onclick="update_doc(this, '${doc.id}')">Edit</button>
-        <button onclick="del_doc('${doc.id}')">Delete</button>
+        <button onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
+        <button onclick="del_doc_ann('${doc.id}')">Delete</button>
       </td>
     `;
 
