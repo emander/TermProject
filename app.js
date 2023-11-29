@@ -11,16 +11,18 @@ function update_doc_tv(ele, id) {
   console.log(ele);
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  inputs[0].type = "number";
-  inputs[1].type = "text";
+  inputs[0].type = "text";
+  inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
-  inputs[4].type = "date";
+  inputs[4].type = "text";
   inputs[5].type = "date";
-  inputs[6].type = "text";
+  inputs[6].type = "date";
   inputs[7].type = "text";
+  inputs[8].type = "text";
 
   db.collection("tableview").doc(id).update({
+    status: inputs[0].value,
     quarter: inputs[0].value,
     bisfunction: inputs[1].value,
     taskcat: inputs[2].value,
@@ -381,7 +383,11 @@ db.collection("tableview")
       let newRow = document.createElement("tr");
       newRow.innerHTML = `
       <td>
-        <label for="statuscheckbox"></label>
+        <select type="dropdown" id="status">
+          <option value="Not Started">Not Started</option>
+          <option value ="In Progress">In Progress</option>
+          <option value ="Complete">Complete</option>
+        </select>
       </td>
       <td>${doc.data().quarter} <input type="hidden" value = "${
         doc.data().quarter
