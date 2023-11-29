@@ -11,7 +11,17 @@ function update_doc_tv(ele, id) {
   console.log(ele);
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  inputs[0].type = "text";
+  let selectElement = document.createElement("select");
+  selectElement.id = "statusDropdown";
+  let statusOptions = ["Not Started", "In Progress", "Completed"];
+  for (let i = 0; i < statusOptions.length; i++){
+    let option = document.createElement("option");
+    option.value = statusOptions[i];
+    option.text = statusOptions[i];
+    selectElement.appendChild(option);
+  };
+
+  inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
   inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
@@ -22,15 +32,15 @@ function update_doc_tv(ele, id) {
   inputs[8].type = "text";
 
   db.collection("tableview").doc(id).update({
-    status: inputs[0].value,
-    quarter: inputs[0].value,
-    bisfunction: inputs[1].value,
-    taskcat: inputs[2].value,
-    task: inputs[3].value,
-    startdate: inputs[4].value,
-    enddate: inputs[5].value,
-    collaborators: inputs[6].value,
-    comments: inputs[7].value,
+    status: selectElement.value,
+    quarter: inputs[1].value,
+    bisfunction: inputs[2].value,
+    taskcat: inputs[3].value,
+    task: inputs[4].value,
+    startdate: inputs[5].value,
+    enddate: inputs[6].value,
+    collaborators: inputs[7].value,
+    comments: inputs[8].value,
   });
 };
 
@@ -354,6 +364,7 @@ submitrowbtn.addEventListener("click", function (event) {
   event.preventDefault();
 
   let tblrow = {
+    status: document.querySelector("#status").value,
     quarter: document.querySelector("#quarter").value,
     bisfunction: document.querySelector("#bisfunction").value,
     taskcat: document.querySelector("#taskcat").value,
@@ -382,13 +393,9 @@ db.collection("tableview")
     docs.forEach((doc) => {
       let newRow = document.createElement("tr");
       newRow.innerHTML = `
-      <td>
-        <select type="dropdown" id="status">
-          <option value="Not Started">Not Started</option>
-          <option value ="In Progress">In Progress</option>
-          <option value ="Complete">Complete</option>
-        </select>
-      </td>
+      <td>${doc.data().status} <input type="hidden" value = "${
+        doc.data().status
+      }"/></td>
       <td>${doc.data().quarter} <input type="hidden" value = "${
         doc.data().quarter
       }"/></td>
