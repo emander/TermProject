@@ -5,7 +5,7 @@ function del_doc_tv(id) {
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-};
+}
 
 function update_doc_tv(ele, id) {
   console.log(ele);
@@ -14,12 +14,12 @@ function update_doc_tv(ele, id) {
   let selectElement = document.createElement("select");
   selectElement.id = "statusDropdown";
   let statusOptions = ["Not Started", "In Progress", "Completed"];
-  for (let i = 0; i < statusOptions.length; i++){
+  for (let i = 0; i < statusOptions.length; i++) {
     let option = document.createElement("option");
     option.value = statusOptions[i];
     option.text = statusOptions[i];
     selectElement.appendChild(option);
-  };
+  }
 
   inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
   inputs[1].type = "number";
@@ -42,14 +42,14 @@ function update_doc_tv(ele, id) {
     collaborators: inputs[7].value,
     comments: inputs[8].value,
   });
-};
+}
 
 function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-};
+}
 
 function update_doc_ann(ele, id) {
   console.log(ele);
@@ -66,12 +66,11 @@ function update_doc_ann(ele, id) {
     title: inputs[2].value,
     announcement: inputs[3].value,
   });
-};
-
+}
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
-};
+}
 
 function validateForm() {
   var email = document.getElementById("email").value;
@@ -97,7 +96,29 @@ function validateForm() {
     event.preventDefault();
     return false; // Prevent form submission
   }
-};
+}
+
+// TEST STEPHANIE
+function configure_nav_bar(userObj) {
+  if (userObj) {
+    // show all links with signedin class hide all links with signedout class
+    signedinlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+    signedoutlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  } else {
+    // show all links with signedout class hide all links with signedin class
+    signedoutlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+    signedinlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
+}
+// TEST STEPHANIE
 
 // sign in modal
 
@@ -430,28 +451,28 @@ db.collection("tableview")
     });
   });
 
-  // add announcement rows in firebase
+// add announcement rows in firebase
 
-  let submitannbtn = document.querySelector("#submitannbtn");
+let submitannbtn = document.querySelector("#submitannbtn");
 
-  submitannbtn.addEventListener("click", function (event) {
-    event.preventDefault();
-  
-    let tblrow = {
-      date: document.querySelector("#anndate").value,
-      author: document.querySelector("#author").value,
-      title: document.querySelector("#jobtitle").value,
-      announcement: document.querySelector("#announcement").value,
-    };
-  
-    db.collection("announcements")
-      .add(tblrow)
-      .then(() => alert("new row added!"));
-  });
+submitannbtn.addEventListener("click", function (event) {
+  event.preventDefault();
 
-  // show rows in table on website
+  let tblrow = {
+    date: document.querySelector("#anndate").value,
+    author: document.querySelector("#author").value,
+    title: document.querySelector("#jobtitle").value,
+    announcement: document.querySelector("#announcement").value,
+  };
 
   db.collection("announcements")
+    .add(tblrow)
+    .then(() => alert("new row added!"));
+});
+
+// show rows in table on website
+
+db.collection("announcements")
   .get()
   .then((data) => {
     let docs = data.docs;
@@ -464,10 +485,16 @@ db.collection("tableview")
       newRow.innerHTML = `
       <td>${doc.data().date} <input type="hidden" value="${doc.data().date}"/>
       </td>
-      <td>${doc.data().author} <input type="hidden" value="${doc.data().author}"/></td>
-      <td>${doc.data().title} <input type="hidden" value = "${doc.data().title}"/>
+      <td>${doc.data().author} <input type="hidden" value="${
+        doc.data().author
+      }"/></td>
+      <td>${doc.data().title} <input type="hidden" value = "${
+        doc.data().title
+      }"/>
       </td>
-      <td>${doc.data().announcement} <input type="hidden" value = "${doc.data().announcement}"/>
+      <td>${doc.data().announcement} <input type="hidden" value = "${
+        doc.data().announcement
+      }"/>
       </td>
       <td>
         <button onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
@@ -478,4 +505,3 @@ db.collection("tableview")
       annbody.appendChild(newRow);
     });
   });
-
