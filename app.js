@@ -349,6 +349,8 @@ auth.onAuthStateChanged((user) => {
     // console.log('user is now signed out')
     configure_message_bar("The user is now signed out");
     document.querySelector("#user-email").innerHTML = "";
+    document.querySelector("#Announcements").innerHTML =
+      "You have to be signed in to see the content.";
   }
 });
 
