@@ -356,10 +356,15 @@ auth.onAuthStateChanged((user) => {
 
 // Sign Out
 function signOut() {
-  auth
+  firebase
+    .auth()
     .signOut()
-    .then(() => console.log("Sign out successful"))
-    .catch((error) => console.error("Sign out failed", error));
+    .then(() => {
+      console.log("User signed out successfully");
+    })
+    .catch((error) => {
+      console.error("Error signing out:", error);
+    });
 }
 
 function openPage(pageName, elmnt, color) {
