@@ -44,7 +44,7 @@
                 alert("You are signed-in! Hit OK to return to homepage")
                 setTimeout(function() {
                   location.reload();
-                }, 3000);
+                }, 2000);
               }
             </script>
           </div>
@@ -205,18 +205,19 @@
             >
           </div>
           <div class="navbar-item">
-            <a
-              class="button"
-              onclick="signOut()"
-              id="signoutbtn"
-              onclick="showsignoutAlert()"
-              >Sign Out</a>
             <script>
               function showsignoutAlert() {
                 window.location.reload();
                 alert("You've been signed-out!");
               };
             </script>
+            <a
+              class="button"
+              onclick="signOut()"
+              id="signoutbtn"
+              onclick="showsignoutAlert()"
+              >Sign Out</a>
+    
           </div>
           <div class="navbar-menu is-active">
             <div class="navbar-end">
