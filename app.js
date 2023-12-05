@@ -5,7 +5,7 @@ function del_doc_tv(id) {
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-}
+};
 
 function update_doc_tv(ele, id) {
   console.log(ele);
@@ -41,15 +41,17 @@ function update_doc_tv(ele, id) {
     enddate: inputs[6].value,
     collaborators: inputs[7].value,
     comments: inputs[8].value,
-  });
-}
+  })
+  .then(() => alert("edits saved!"));
+};
 
 function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
-    .then(() => alert("row deleted"));
-}
+    .then(() => alert("row deleted"))
+    .then(() => refreshFilters())
+};
 
 function update_doc_ann(ele, id) {
   console.log(ele);
@@ -66,11 +68,11 @@ function update_doc_ann(ele, id) {
     title: inputs[2].value,
     announcement: inputs[3].value,
   });
-}
+};
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
-}
+};
 
 function validateForm() {
   var email = document.getElementById("email").value;
@@ -96,7 +98,7 @@ function validateForm() {
     event.preventDefault();
     return false; // Prevent form submission
   }
-}
+};
 
 // TEST STEPHANIE
 function configure_nav_bar(userObj) {
