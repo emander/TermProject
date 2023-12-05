@@ -41,8 +41,10 @@
             </class>
             <script>
               function showsigninAlert() {
-                window.location.reload();
-                alert("You are signed-in!")
+                alert("You are signed-in! Hit OK to return to homepage")
+                setTimeout(function() {
+                  location.reload();
+                }, 3000);
               }
             </script>
           </div>
