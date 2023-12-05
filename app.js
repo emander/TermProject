@@ -8,20 +8,22 @@ function del_doc_tv(id) {
 };
 
 function update_doc_tv(ele, id) {
+  // alert(ele);
+  // alert(id);
   console.log(ele);
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  let selectElement = document.createElement("select");
-  selectElement.id = "statusDropdown";
-  let statusOptions = ["Not Started", "In Progress", "Completed"];
-  for (let i = 0; i < statusOptions.length; i++) {
-    let option = document.createElement("option");
-    option.value = statusOptions[i];
-    option.text = statusOptions[i];
-    selectElement.appendChild(option);
-  };
+  // let selectElement = document.createElement("select");
+  // selectElement.id = "statusDropdown";
+  // let statusOptions = ["Not Started", "In Progress", "Completed"];
+  // for (let i = 0; i < statusOptions.length; i++) {
+  //   let option = document.createElement("option");
+  //   option.value = statusOptions[i];
+  //   option.text = statusOptions[i];
+  //   selectElement.appendChild(option);
+  // };
 
-  inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
+  // inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
   inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
@@ -31,8 +33,10 @@ function update_doc_tv(ele, id) {
   inputs[7].type = "text";
   inputs[8].type = "text";
 
+  alert(inputs[4].value);
+
   db.collection("tableview").doc(id).update({
-    status: selectElement.value,
+    // status: selectElement.value,
     quarter: inputs[1].value,
     bisfunction: inputs[2].value,
     taskcat: inputs[3].value,
@@ -41,7 +45,7 @@ function update_doc_tv(ele, id) {
     enddate: inputs[6].value,
     collaborators: inputs[7].value,
     comments: inputs[8].value,
-  });
+  }).then(() => alert('updated!'));
 };
 
 function del_doc_ann(id) {
