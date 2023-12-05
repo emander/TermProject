@@ -5,39 +5,51 @@ function del_doc_tv(id) {
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-};
+}
 
 function update_doc_tv(ele, id) {
   console.log(ele);
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  inputs[0].type = "number";
-  inputs[1].type = "text";
+  let selectElement = document.createElement("select");
+  selectElement.id = "statusDropdown";
+  let statusOptions = ["Not Started", "In Progress", "Completed"];
+  for (let i = 0; i < statusOptions.length; i++) {
+    let option = document.createElement("option");
+    option.value = statusOptions[i];
+    option.text = statusOptions[i];
+    selectElement.appendChild(option);
+  }
+
+  inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
+  inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
-  inputs[4].type = "date";
+  inputs[4].type = "text";
   inputs[5].type = "date";
-  inputs[6].type = "text";
+  inputs[6].type = "date";
   inputs[7].type = "text";
+  inputs[8].type = "text";
 
   db.collection("tableview").doc(id).update({
-    quarter: inputs[0].value,
-    bisfunction: inputs[1].value,
-    taskcat: inputs[2].value,
-    task: inputs[3].value,
-    startdate: inputs[4].value,
-    enddate: inputs[5].value,
-    collaborators: inputs[6].value,
-    comments: inputs[7].value,
+    status: selectElement.value,
+    quarter: inputs[1].value,
+    bisfunction: inputs[2].value,
+    taskcat: inputs[3].value,
+    task: inputs[4].value,
+    startdate: inputs[5].value,
+    enddate: inputs[6].value,
+    collaborators: inputs[7].value,
+    comments: inputs[8].value,
   });
-};
+}
 
 function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-};
+}
 
 function update_doc_ann(ele, id) {
   console.log(ele);
@@ -54,12 +66,11 @@ function update_doc_ann(ele, id) {
     title: inputs[2].value,
     announcement: inputs[3].value,
   });
-};
-
+}
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
-};
+}
 
 function validateForm() {
   var email = document.getElementById("email").value;
@@ -85,7 +96,29 @@ function validateForm() {
     event.preventDefault();
     return false; // Prevent form submission
   }
-};
+}
+
+// TEST STEPHANIE
+function configure_nav_bar(userObj) {
+  if (userObj) {
+    // show all links with signedin class hide all links with signedout class
+    signedinlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+    signedoutlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  } else {
+    // show all links with signedout class hide all links with signedin class
+    signedoutlinks.forEach((link) => {
+      link.classList.remove("is-hidden");
+    });
+    signedinlinks.forEach((link) => {
+      link.classList.add("is-hidden");
+    });
+  }
+}
+// TEST STEPHANIE
 
 // sign in modal
 
@@ -316,6 +349,8 @@ auth.onAuthStateChanged((user) => {
     // console.log('user is now signed out')
     configure_message_bar("The user is now signed out");
     document.querySelector("#user-email").innerHTML = "";
+    document.querySelector("#Announcements").innerHTML =
+      "You have to be signed in to see the content.";
   }
 });
 
@@ -352,6 +387,7 @@ submitrowbtn.addEventListener("click", function (event) {
   event.preventDefault();
 
   let tblrow = {
+    status: document.querySelector("#status").value,
     quarter: document.querySelector("#quarter").value,
     bisfunction: document.querySelector("#bisfunction").value,
     taskcat: document.querySelector("#taskcat").value,
@@ -380,9 +416,9 @@ db.collection("tableview")
     docs.forEach((doc) => {
       let newRow = document.createElement("tr");
       newRow.innerHTML = `
-      <td>
-        <label for="statuscheckbox"></label>
-      </td>
+      <td>${doc.data().status} <input type="hidden" value = "${
+        doc.data().status
+      }"/></td>
       <td>${doc.data().quarter} <input type="hidden" value = "${
         doc.data().quarter
       }"/></td>
@@ -417,28 +453,28 @@ db.collection("tableview")
     });
   });
 
-  // add announcement rows in firebase
+// add announcement rows in firebase
 
-  let submitannbtn = document.querySelector("#submitannbtn");
+let submitannbtn = document.querySelector("#submitannbtn");
 
-  submitannbtn.addEventListener("click", function (event) {
-    event.preventDefault();
-  
-    let tblrow = {
-      date: document.querySelector("#anndate").value,
-      author: document.querySelector("#author").value,
-      title: document.querySelector("#jobtitle").value,
-      announcement: document.querySelector("#announcement").value,
-    };
-  
-    db.collection("announcements")
-      .add(tblrow)
-      .then(() => alert("new row added!"));
-  });
+submitannbtn.addEventListener("click", function (event) {
+  event.preventDefault();
 
-  // show rows in table on website
+  let tblrow = {
+    date: document.querySelector("#anndate").value,
+    author: document.querySelector("#author").value,
+    title: document.querySelector("#jobtitle").value,
+    announcement: document.querySelector("#announcement").value,
+  };
 
   db.collection("announcements")
+    .add(tblrow)
+    .then(() => alert("new row added!"));
+});
+
+// show rows in table on website
+
+db.collection("announcements")
   .get()
   .then((data) => {
     let docs = data.docs;
@@ -451,10 +487,16 @@ db.collection("tableview")
       newRow.innerHTML = `
       <td>${doc.data().date} <input type="hidden" value="${doc.data().date}"/>
       </td>
-      <td>${doc.data().author} <input type="hidden" value="${doc.data().author}"/></td>
-      <td>${doc.data().title} <input type="hidden" value = "${doc.data().title}"/>
+      <td>${doc.data().author} <input type="hidden" value="${
+        doc.data().author
+      }"/></td>
+      <td>${doc.data().title} <input type="hidden" value = "${
+        doc.data().title
+      }"/>
       </td>
-      <td>${doc.data().announcement} <input type="hidden" value = "${doc.data().announcement}"/>
+      <td>${doc.data().announcement} <input type="hidden" value = "${
+        doc.data().announcement
+      }"/>
       </td>
       <td>
         <button onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
@@ -465,4 +507,3 @@ db.collection("tableview")
       annbody.appendChild(newRow);
     });
   });
-
