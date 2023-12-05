@@ -45,7 +45,7 @@ function update_doc_tv(ele, id) {
     enddate: inputs[6].value,
     collaborators: inputs[7].value,
     comments: inputs[8].value,
-  }).then(() => alert('updated!'));
+  }).then(() => alert('1st click: ignore, 2nd click: refresh page'));
 };
 
 function del_doc_ann(id) {
