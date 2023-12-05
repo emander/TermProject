@@ -19,7 +19,7 @@ function update_doc_tv(ele, id) {
     option.value = statusOptions[i];
     option.text = statusOptions[i];
     selectElement.appendChild(option);
-  }
+  };
 
   inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
   inputs[1].type = "number";
@@ -41,8 +41,7 @@ function update_doc_tv(ele, id) {
     enddate: inputs[6].value,
     collaborators: inputs[7].value,
     comments: inputs[8].value,
-  })
-  .then(() => alert("edits saved!"));
+  });
 };
 
 function del_doc_ann(id) {
