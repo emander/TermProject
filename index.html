@@ -37,8 +37,14 @@
           </div>
           <div class="field">
             <class class="control">
-              <button class="button" id="submit_signin">Submit</button>
+              <button class="button" id="submit_signin" onclick="showsigninAlert()">Submit</button>
             </class>
+            <script>
+              function showsigninAlert() {
+                window.location.reload();
+                alert("You are signed-in!")
+              }
+            </script>
           </div>
           <div class="has-text-white" id="signinError"></div>
         </form>
@@ -113,8 +119,14 @@
           </div>
           <div class="field">
             <class class="control">
-              <button class="button" id="submitrowbtn">Submit</button>
+              <button class="button" id="submitrowbtn" onclick="showtaskAlert()">Submit</button>
             </class>
+            <script>
+              function showtaskAlert() {
+                window.location.reload();
+                alert("Task Added!");
+              }
+            </script>
           </div>
         </form>
       </div>
@@ -154,7 +166,13 @@
           </div>
           <div class="field">
             <class class="control">
-              <button class="button" id="submitannbtn">Submit</button>
+              <button class="button" id="submitannbtn" onclick="showannouncAlert()">Submit</button>
+              <script>
+                function showannouncAlert() {
+                  window.location.reload();
+                  alert("Announcement Added!");
+                }
+              </script>
             </class>
           </div>
         </form>
@@ -191,8 +209,15 @@
               class="button"
               onclick="signOut()"
               id="signoutbtn"
+              onclick="showsignoutAlert()"
               >Sign Out</a
             >
+            <script>
+              function showsignoutAlert() {
+                window.location.reload();
+                alert("You've been signed-out!")
+              }
+            </script>
           </div>
           <div class="navbar-menu is-active">
             <div class="navbar-end">
@@ -222,8 +247,14 @@
                               <!-- submit -->
                               <div class="field">
                                   <div class="control">
-                                      <button class="m-3 button is-link" id="sum_submit">Submit</button>
+                                      <button class="m-3 button is-link" id="sum_submit" onclick="showsignupAlert()">Submit</button>
                                   </div>
+                                  <script>
+                                    function showsignupAlert() {
+                                      window.location.reload();
+                                      alert("You have made an account!");
+                                    }
+                                  </script>
                               </div>
               
                               <!-- div error -->
