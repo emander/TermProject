@@ -113,8 +113,14 @@
           </div>
           <div class="field">
             <class class="control">
-              <button class="button" id="submitrowbtn">Submit</button>
+              <button class="button" id="submitrowbtn" onclick="showtaskAlert()">Submit</button>
             </class>
+            <script>
+              function showtaskAlert() {
+                window.location.reload();
+                alert("Task Added!");
+              }
+            </script>
           </div>
         </form>
       </div>
