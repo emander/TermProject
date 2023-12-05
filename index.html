@@ -37,8 +37,14 @@
           </div>
           <div class="field">
             <class class="control">
-              <button class="button" id="submit_signin">Submit</button>
+              <button class="button" id="submit_signin" onclick="showsigninAlert()">Submit</button>
             </class>
+            <script>
+              function showsigninAlert() {
+                window.location.reload();
+                alert("You are signed-in!")
+              }
+            </script>
           </div>
           <div class="has-text-white" id="signinError"></div>
         </form>
@@ -202,8 +208,15 @@
             <a
               class="button"
               id="signoutbtn"
+              onclick="showsignoutAlert()"
               >Sign Out</a
             >
+            <script>
+              function showsignoutAlert() {
+                window.location.reload();
+                alert("You've been signed-out!")
+              }
+            </script>
           </div>
           <div class="navbar-menu is-active">
             <div class="navbar-end">
