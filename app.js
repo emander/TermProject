@@ -5,7 +5,7 @@ function del_doc_tv(id) {
     .doc(id)
     .delete()
     .then(() => alert("row deleted"));
-};
+}
 
 function update_doc_tv(ele, id) {
   // alert(ele);
@@ -35,26 +35,29 @@ function update_doc_tv(ele, id) {
 
   alert(inputs[4].value);
 
-  db.collection("tableview").doc(id).update({
-    // status: selectElement.value,
-    quarter: inputs[1].value,
-    bisfunction: inputs[2].value,
-    taskcat: inputs[3].value,
-    task: inputs[4].value,
-    startdate: inputs[5].value,
-    enddate: inputs[6].value,
-    collaborators: inputs[7].value,
-    comments: inputs[8].value,
-  }).then(() => alert('1st click: ignore, 2nd click: refresh page'));
-};
+  db.collection("tableview")
+    .doc(id)
+    .update({
+      // status: selectElement.value,
+      quarter: inputs[1].value,
+      bisfunction: inputs[2].value,
+      taskcat: inputs[3].value,
+      task: inputs[4].value,
+      startdate: inputs[5].value,
+      enddate: inputs[6].value,
+      collaborators: inputs[7].value,
+      comments: inputs[8].value,
+    })
+    .then(() => alert("1st click: ignore, 2nd click: refresh page"));
+}
 
 function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
     .then(() => alert("row deleted"))
-    .then(() => refreshFilters())
-};
+    .then(() => refreshFilters());
+}
 
 function update_doc_ann(ele, id) {
   console.log(ele);
@@ -71,11 +74,11 @@ function update_doc_ann(ele, id) {
     title: inputs[2].value,
     announcement: inputs[3].value,
   });
-};
+}
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
-};
+}
 
 function validateForm() {
   var email = document.getElementById("email").value;
@@ -101,7 +104,10 @@ function validateForm() {
     event.preventDefault();
     return false; // Prevent form submission
   }
-};
+}
+
+const signedinlinks = document.querySelectorAll(".signedin");
+const signedoutlinks = document.querySelectorAll(".signedout");
 
 // TEST STEPHANIE
 function configure_nav_bar(userObj) {
@@ -347,12 +353,14 @@ signin_form.addEventListener("submit", (e) => {
 auth.onAuthStateChanged((user) => {
   if (user) {
     // console.log('user is signed in')
-    configure_message_bar("The user is now signed in");
+    // configure_message_bar("The user is now signed in");
     //show user email address at the navigation bar
+    configure_nav_bar(user);
     document.querySelector("#user-email").innerHTML = user.email;
   } else {
     // console.log('user is now signed out')
-    configure_message_bar("The user is now signed out");
+    // configure_message_bar("The user is now signed out");
+    configure_nav_bar();
     document.querySelector("#user-email").innerHTML = "";
     document.querySelector("#Announcements").innerHTML =
       "You have to be signed in to see the content.";

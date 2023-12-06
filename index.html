@@ -212,7 +212,7 @@
               };
             </script>
             <a
-              class="button"
+              class="button signedin"
               onclick="signOut()"
               id="signoutbtn"
               onclick="showsignoutAlert()"
@@ -222,7 +222,7 @@
           <div class="navbar-menu is-active">
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a class="button" id="signupbtn">Sign Up</a>
+                    <a class="button signedout" id="signupbtn">Sign Up</a>
                     <div class="modal" id="signup-modal">
                       <div class="modal-background" id="signup-modalbg"></div>
                       <div class="modal-content p-6 has-background-white">
@@ -287,7 +287,7 @@
             ACADEMIC PROGRAM MANAGER TASK ORGANIZER
           </p>
           <p
-            class="has-text-centered has-text-danger-dark subtitle is-size-4 p-3"
+            class="has-text-centered has-text-danger-dark subtitle is-size-4 p-3 signedout"
           >
             Login to your department to view upcoming tasks, filter on the table
             task list, and view the calendar
@@ -297,7 +297,7 @@
           <div class="has-text-centered">
             <button
               id="signinbtn"
-              class="button is-danger"
+              class="button is-danger signedout"
               style="background-color: #aa0707"
             >
               Sign In
@@ -358,20 +358,20 @@
           }
         </style>
         <button
-          class="tablink"
+          class="tablink signedin"
           onclick="openPage('Announcements', this, 'black')"
           id="defaultOpen"
         >
           Announcements
         </button>
-        <button class="tablink" onclick="openPage('Tasks', this, 'black')">
+        <button class="tablink signedin" onclick="openPage('Tasks', this, 'black')">
           Tasks
         </button>
-        <button class="tablink" onclick="openPage('Calendar', this, 'black')">
+        <button class="tablink signedin" onclick="openPage('Calendar', this, 'black')">
           Calendar
         </button>
 
-        <div id="Announcements" class="tabcontent signedin">
+        <div id="Announcements" class="tabcontent">
           <div id="announcementsContent">
             <table class="table is-bordered" width="90%" align="center" id="annTable">
               <thead>  
@@ -394,7 +394,7 @@
             </div>
         </div>
 
-        <div id="Tasks" class="tabcontent signedin">
+        <div id="Tasks" class="tabcontent">
           <div style="overflow-x: auto; max-width: 100%">
             <table class="table is-bordered" width="90%" align="center" id="fullTable">
               <!-- filter row with dropdowns -->
@@ -475,7 +475,7 @@
           </div>
         </div>
 
-        <div id="Calendar" class="tabcontent signedin">
+        <div id="Calendar" class="tabcontent">
             <p align="center">
           <iframe
             src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago&title=WSB%20Program%20Management&src=d3NicHJvZ3JhbW1nbXRAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%230B8043"
