@@ -24,6 +24,7 @@ function update_doc_tv(ele, id) {
   // };
 
   // inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
+  inputs[0].type = "text";
   inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
