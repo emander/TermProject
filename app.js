@@ -11,19 +11,18 @@ function update_doc_tv(ele, id) {
   // alert(ele);
   // alert(id);
   console.log(ele);
+
+  let edit_btn_tv = document.querySelector("#edit_btn_tv");
+  edit_btn_tv.classList.add("is-hidden");
+
+  let button_tv = document.querySelector("#button_tv");
+  button_tv.innerHTML += `
+  <button id="sub_edit_btn_tv">Submit Edit</button>
+  `;
+
+
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  // let selectElement = document.createElement("select");
-  // selectElement.id = "statusDropdown";
-  // let statusOptions = ["Not Started", "In Progress", "Completed"];
-  // for (let i = 0; i < statusOptions.length; i++) {
-  //   let option = document.createElement("option");
-  //   option.value = statusOptions[i];
-  //   option.text = statusOptions[i];
-  //   selectElement.appendChild(option);
-  // };
-
-  // inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
   inputs[0].type = "text";
   inputs[1].type = "number";
   inputs[2].type = "text";
@@ -34,12 +33,10 @@ function update_doc_tv(ele, id) {
   inputs[7].type = "text";
   inputs[8].type = "text";
 
-  alert(inputs[4].value);
-
   db.collection("tableview")
     .doc(id)
     .update({
-      // status: selectElement.value,
+      status: inputs[0].value,
       quarter: inputs[1].value,
       bisfunction: inputs[2].value,
       taskcat: inputs[3].value,
@@ -462,8 +459,8 @@ db.collection("tableview")
       <td>${doc.data().comments} <input type="hidden" value = "${
         doc.data().comments
       }"/></td>
-      <td>
-        <button onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
+      <td id="button_tv">
+        <button id="edit_btn_tv" onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
         <button onclick="del_doc_tv('${doc.id}')">Delete</button>
       </td>
     `;
@@ -491,7 +488,7 @@ submitannbtn.addEventListener("click", function (event) {
     .then(() => alert("new row added!"));
 });
 
-// show rows in table on website
+// show rows in announcements on website
 
 db.collection("announcements")
   .get()
