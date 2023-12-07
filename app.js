@@ -533,7 +533,8 @@ submitannbtn.addEventListener("click", function (event) {
 
   db.collection("announcements")
     .add(tblrow)
-    .then(() => alert("new row added!"));
+    .then(() => window.location.reload());
+    //alert("new row added!"));
 });
 
 // show rows in announcements on website
