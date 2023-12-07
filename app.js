@@ -12,9 +12,6 @@ function update_doc_tv(ele, id) {
   // alert(id);
   console.log(ele);
 
-  let edit_btn_tv = document.querySelector("#edit_btn_tv");
-  edit_btn_tv.classList.add("is-hidden");
-
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
   inputs[0].type = "text";
@@ -67,9 +64,6 @@ function del_doc_ann(id) {
 
 function update_doc_ann(ele, id) {
   console.log(ele);
-
-  let edit_btn_ann = document.querySelector("#edit_btn_ann");
-  edit_btn_ann.classList.add("is-hidden");
 
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
