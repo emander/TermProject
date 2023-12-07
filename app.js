@@ -46,7 +46,7 @@ function update_fb_tv(id, inputs){
       collaborators: inputs[7].value,
       comments: inputs[8].value,
     })
-    .then(() => alert("Updates saved!"));
+    .then(() => alert("Updates saved! Refresh the page to return to viewing mode..."));
 };
 
 function del_doc_ann(id) {
