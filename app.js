@@ -155,8 +155,8 @@ function configure_nav_bar(userObj) {
     signedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
-  }
-}
+  };
+};
 // TEST STEPHANIE
 
 // sign in modal
@@ -344,6 +344,23 @@ signup_form.addEventListener("submit", (e) => {
   } else {
     alert("B");
   }
+});
+
+// send users to firebase
+
+let sum_submit = document.querySelector("#sum_submit");
+
+sum_submit.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  let data = {
+    email: document.querySelector("#email").value,
+    password: document.querySelector("#password").value,
+  };
+
+  db.collection("users")
+    .add(data)
+    .then(() => alert("User added!"))
 });
 
 // Sign Up Modal Link
