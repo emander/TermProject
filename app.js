@@ -463,7 +463,8 @@ submitrowbtn.addEventListener("click", function (event) {
 
   db.collection("tableview")
     .add(tblrow)
-    .then(() => alert("new row added!"));
+    .then(() => window.location.reload());
+    //alert("new row added!"));
 });
 
 // show rows in table on website
