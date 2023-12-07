@@ -4,26 +4,20 @@ function del_doc_tv(id) {
   db.collection("tableview")
     .doc(id)
     .delete()
-    .then(() => alert("row deleted"));
+    .then(() => alert("Task deleted! Refresh the page to continue..."));
 }
 
 function update_doc_tv(ele, id) {
   // alert(ele);
   // alert(id);
   console.log(ele);
+
+  let edit_btn_tv = document.querySelector("#edit_btn_tv");
+  edit_btn_tv.classList.add("is-hidden");
+
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
-  // let selectElement = document.createElement("select");
-  // selectElement.id = "statusDropdown";
-  // let statusOptions = ["Not Started", "In Progress", "Completed"];
-  // for (let i = 0; i < statusOptions.length; i++) {
-  //   let option = document.createElement("option");
-  //   option.value = statusOptions[i];
-  //   option.text = statusOptions[i];
-  //   selectElement.appendChild(option);
-  // };
-
-  // inputs[0].parentNode.replaceChild(selectElement, inputs[0]);
+  inputs[0].type = "text";
   inputs[1].type = "number";
   inputs[2].type = "text";
   inputs[3].type = "text";
@@ -33,12 +27,24 @@ function update_doc_tv(ele, id) {
   inputs[7].type = "text";
   inputs[8].type = "text";
 
-  alert(inputs[4].value);
+  let button_tv = document.querySelector('#button_tv');
 
+  let sub_edit_btn_tv = document.createElement("button");
+  sub_edit_btn_tv.id = "sub_edit_btn_tv";
+  sub_edit_btn_tv.textContent = "Submit Edit";
+
+  sub_edit_btn_tv.addEventListener("click", function () {
+    update_fb_tv(id, inputs);
+  });
+
+  button_tv.appendChild(sub_edit_btn_tv);
+};
+
+function update_fb_tv(id, inputs){
   db.collection("tableview")
     .doc(id)
     .update({
-      // status: selectElement.value,
+      status: inputs[0].value,
       quarter: inputs[1].value,
       bisfunction: inputs[2].value,
       taskcat: inputs[3].value,
@@ -48,19 +54,23 @@ function update_doc_tv(ele, id) {
       collaborators: inputs[7].value,
       comments: inputs[8].value,
     })
-    .then(() => alert("1st click: ignore, 2nd click: refresh page"));
-}
+    .then(() => alert("Updates saved!"));
+};
 
 function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
-    .then(() => alert("row deleted"))
+    .then(() => alert("Announcement deleted! Refresh the page to continue..."))
     .then(() => refreshFilters());
 }
 
 function update_doc_ann(ele, id) {
   console.log(ele);
+
+  let edit_btn_ann = document.querySelector("#edit_btn_ann");
+  edit_btn_ann.classList.add("is-hidden");
+
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
   inputs[0].type = "date";
@@ -68,13 +78,31 @@ function update_doc_ann(ele, id) {
   inputs[2].type = "text";
   inputs[3].type = "text";
 
-  db.collection("announcements").doc(id).update({
+  let button_ann = document.querySelector('#button_ann');
+
+  let sub_edit_btn_ann = document.createElement("button");
+  sub_edit_btn_ann.id = "sub_edit_btn_ann";
+  sub_edit_btn_ann.textContent = "Submit Edit";
+
+  sub_edit_btn_ann.addEventListener("click", function () {
+    update_fb_ann(id, inputs);
+  });
+
+  button_ann.appendChild(sub_edit_btn_ann);
+};
+
+function update_fb_ann(id, inputs){
+  db.collection("announcements")
+    .doc(id)
+    .update({
     date: inputs[0].value,
     author: inputs[1].value,
     title: inputs[2].value,
     announcement: inputs[3].value,
-  });
-}
+  })
+  .then(() => alert("Updates saved! Refresh the page to return to viewing mode..."));
+    
+};
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
@@ -127,8 +155,8 @@ function configure_nav_bar(userObj) {
     signedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
-  }
-}
+  };
+};
 // TEST STEPHANIE
 
 // sign in modal
@@ -318,6 +346,23 @@ signup_form.addEventListener("submit", (e) => {
   }
 });
 
+// send users to firebase
+
+let sum_submit = document.querySelector("#sum_submit");
+
+sum_submit.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  let data = {
+    email: document.querySelector("#email").value,
+    password: document.querySelector("#password").value,
+  };
+
+  db.collection("users")
+    .add(data)
+    .then(() => alert("User added!"))
+});
+
 // Sign Up Modal Link
 signupbtn.addEventListener("click", () => {
   signupModal.classList.add("is-active");
@@ -373,7 +418,8 @@ function signOut() {
     .auth()
     .signOut()
     .then(() => {
-      console.log("User signed out successfully");
+      //console.log("User signed out successfully");
+      alert("You have successfully signed out!")
     })
     .catch((error) => {
       console.error("Error signing out:", error);
@@ -418,7 +464,8 @@ submitrowbtn.addEventListener("click", function (event) {
 
   db.collection("tableview")
     .add(tblrow)
-    .then(() => alert("new row added!"));
+    .then(() => window.location.reload());
+    //alert("new row added!"));
 });
 
 // show rows in table on website
@@ -461,8 +508,8 @@ db.collection("tableview")
       <td>${doc.data().comments} <input type="hidden" value = "${
         doc.data().comments
       }"/></td>
-      <td>
-        <button onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
+      <td id="button_tv">
+        <button id="edit_btn_tv" onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
         <button onclick="del_doc_tv('${doc.id}')">Delete</button>
       </td>
     `;
@@ -487,10 +534,11 @@ submitannbtn.addEventListener("click", function (event) {
 
   db.collection("announcements")
     .add(tblrow)
-    .then(() => alert("new row added!"));
+    .then(() => window.location.reload());
+    //alert("new row added!"));
 });
 
-// show rows in table on website
+// show rows in announcements on website
 
 db.collection("announcements")
   .get()
@@ -516,8 +564,8 @@ db.collection("announcements")
         doc.data().announcement
       }"/>
       </td>
-      <td>
-        <button onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
+      <td id="button_ann">
+        <button id="edit_btn_ann" onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
         <button onclick="del_doc_ann('${doc.id}')">Delete</button>
       </td>
     `;
