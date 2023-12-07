@@ -126,8 +126,8 @@ function validateForm() {
     alert("Invalid email or password!");
     event.preventDefault();
     return false; // Prevent form submission
-  }
-}
+  };
+};
 
 const signedinlinks = document.querySelectorAll(".signedin");
 const signedoutlinks = document.querySelectorAll(".signedout");
@@ -150,8 +150,8 @@ function configure_nav_bar(userObj) {
     signedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
-  }
-}
+  };
+};
 
 
 // sign in modal
@@ -339,23 +339,6 @@ signup_form.addEventListener("submit", (e) => {
   } else {
     alert("B");
   }
-});
-
-// send users to firebase
-
-let sum_submit = document.querySelector("#sum_submit");
-
-sum_submit.addEventListener("click", function (event) {
-  event.preventDefault();
-
-  let data = {
-    email: document.querySelector("#email").value,
-    password: document.querySelector("#password").value,
-  };
-
-  db.collection("users")
-    .add(data)
-    .then(() => alert("User added!"));
 });
 
 // Sign Up Modal Link
