@@ -24,15 +24,20 @@ function update_doc_tv(ele, id) {
   inputs[7].type = "text";
   inputs[8].type = "text";
 
-  let sub_edit_btn_tv = document.querySelector(".sub_edit_btn_tv");
-  sub_edit_btn_tv.classList.remove("is-hidden");
+  let button_tv = document.querySelector("#button_tv");
+
+  let sub_edit_btn_tv = document.createElement("button");
+  sub_edit_btn_tv.id = "sub_edit_btn_tv";
+  sub_edit_btn_tv.textContent = "Submit Edit";
 
   sub_edit_btn_tv.addEventListener("click", function () {
     update_fb_tv(id, inputs);
   });
-};
 
-function update_fb_tv(id, inputs){
+  button_tv.appendChild(sub_edit_btn_tv);
+}
+
+function update_fb_tv(id, inputs) {
   db.collection("tableview")
     .doc(id)
     .update({
@@ -46,8 +51,8 @@ function update_fb_tv(id, inputs){
       collaborators: inputs[7].value,
       comments: inputs[8].value,
     })
-    .then(() => alert("Updates saved! Refresh the page to return to viewing mode..."));
-};
+    .then(() => alert("Updates saved!"));
+}
 
 function del_doc_ann(id) {
   db.collection("announcements")
@@ -67,26 +72,32 @@ function update_doc_ann(ele, id) {
   inputs[2].type = "text";
   inputs[3].type = "text";
 
-  let sub_edit_btn_ann = document.querySelector(".sub_edit_btn_ann");
-  sub_edit_btn_ann.classList.remove("is-hidden");
+  let button_ann = document.querySelector("#button_ann");
+
+  let sub_edit_btn_ann = document.createElement("button");
+  sub_edit_btn_ann.id = "sub_edit_btn_ann";
+  sub_edit_btn_ann.textContent = "Submit Edit";
 
   sub_edit_btn_ann.addEventListener("click", function () {
     update_fb_ann(id, inputs);
   });
-};
 
-function update_fb_ann(id, inputs){
+  button_ann.appendChild(sub_edit_btn_ann);
+}
+
+function update_fb_ann(id, inputs) {
   db.collection("announcements")
     .doc(id)
     .update({
-    date: inputs[0].value,
-    author: inputs[1].value,
-    title: inputs[2].value,
-    announcement: inputs[3].value,
-  })
-  .then(() => alert("Updates saved! Refresh the page to return to viewing mode..."));
-    
-};
+      date: inputs[0].value,
+      author: inputs[1].value,
+      title: inputs[2].value,
+      announcement: inputs[3].value,
+    })
+    .then(() =>
+      alert("Updates saved! Refresh the page to return to viewing mode...")
+    );
+}
 
 function close_modal(modal_id) {
   document.querySelector(`#${modal_id}`).classList.remove("is-active");
@@ -121,7 +132,7 @@ function validateForm() {
 const signedinlinks = document.querySelectorAll(".signedin");
 const signedoutlinks = document.querySelectorAll(".signedout");
 
-// TEST STEPHANIE
+// Signed in and out function
 function configure_nav_bar(userObj) {
   if (userObj) {
     // show all links with signedin class hide all links with signedout class
@@ -139,9 +150,8 @@ function configure_nav_bar(userObj) {
     signedinlinks.forEach((link) => {
       link.classList.add("is-hidden");
     });
-  };
-};
-// TEST STEPHANIE
+  }
+}
 
 
 // sign in modal
@@ -285,7 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 });
 
-// Sign Up
+// Sign in
 signup_form.addEventListener("submit", (e) => {
   // prevent auto refresh
   e.preventDefault();
@@ -345,7 +355,7 @@ sum_submit.addEventListener("click", function (event) {
 
   db.collection("users")
     .add(data)
-    .then(() => alert("User added!"))
+    .then(() => alert("User added!"));
 });
 
 // Sign Up Modal Link
@@ -392,7 +402,7 @@ auth.onAuthStateChanged((user) => {
     // configure_message_bar("The user is now signed out");
     configure_nav_bar();
     document.querySelector("#user-email").innerHTML = "";
-    document.querySelector("#Announcements").innerHTML =
+    document.querySelector("#button_ann").innerHTML =
       "You have to be signed in to see the content.";
   }
 });
@@ -404,7 +414,7 @@ function signOut() {
     .signOut()
     .then(() => {
       //console.log("User signed out successfully");
-      alert("You have successfully signed out!")
+      alert("You have successfully signed out!");
     })
     .catch((error) => {
       console.error("Error signing out:", error);
@@ -450,7 +460,7 @@ submitrowbtn.addEventListener("click", function (event) {
   db.collection("tableview")
     .add(tblrow)
     .then(() => window.location.reload());
-    //alert("new row added!"));
+  //alert("new row added!"));
 });
 
 // show rows in table on website
@@ -494,7 +504,9 @@ db.collection("tableview")
         doc.data().comments
       }"/></td>
       <td id="button_tv">
-        <button class="edit_btn_tv" onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
+        <button id="edit_btn_tv" onclick="update_doc_tv(this, '${
+          doc.id
+        }')">Edit</button>
         <button onclick="del_doc_tv('${doc.id}')">Delete</button>
       </td>
     `;
@@ -520,7 +532,7 @@ submitannbtn.addEventListener("click", function (event) {
   db.collection("announcements")
     .add(tblrow)
     .then(() => window.location.reload());
-    //alert("new row added!"));
+  //alert("new row added!"));
 });
 
 // show rows in announcements on website
@@ -549,8 +561,10 @@ db.collection("announcements")
         doc.data().announcement
       }"/>
       </td>
-      <td>
-        <button id="edit_btn_ann" onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
+      <td id="button_ann">
+        <button id="edit_btn_ann" onclick="update_doc_ann(this, '${
+          doc.id
+        }')">Edit</button>
         <button onclick="del_doc_ann('${doc.id}')">Delete</button>
       </td>
     `;
