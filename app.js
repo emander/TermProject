@@ -362,7 +362,7 @@ auth.onAuthStateChanged((user) => {
     // configure_message_bar("The user is now signed out");
     configure_nav_bar();
     document.querySelector("#user-email").innerHTML = "";
-    document.querySelector("#Announcements").innerHTML =
+    document.querySelector("#announcementsContent").innerHTML =
       "You have to be signed in to see the content.";
   }
 });
