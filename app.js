@@ -100,7 +100,7 @@ function update_fb_ann(id, inputs){
     title: inputs[2].value,
     announcement: inputs[3].value,
   })
-  .then(() => alert("Updates saved!"));
+  .then(() => alert("Updates saved! Refresh the page to return to viewing mode..."));
     
 };
 
