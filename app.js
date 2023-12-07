@@ -12,9 +12,6 @@ function update_doc_tv(ele, id) {
   // alert(id);
   console.log(ele);
 
-  let edit_btn_tv = document.querySelector("#edit_btn_tv");
-  edit_btn_tv.classList.add("is-hidden");
-
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
   inputs[0].type = "text";
@@ -27,17 +24,12 @@ function update_doc_tv(ele, id) {
   inputs[7].type = "text";
   inputs[8].type = "text";
 
-  let button_tv = document.querySelector('#button_tv');
-
-  let sub_edit_btn_tv = document.createElement("button");
-  sub_edit_btn_tv.id = "sub_edit_btn_tv";
-  sub_edit_btn_tv.textContent = "Submit Edit";
+  let sub_edit_btn_tv = document.querySelector(".sub_edit_btn_tv");
+  sub_edit_btn_tv.classList.remove("is-hidden");
 
   sub_edit_btn_tv.addEventListener("click", function () {
     update_fb_tv(id, inputs);
   });
-
-  button_tv.appendChild(sub_edit_btn_tv);
 };
 
 function update_fb_tv(id, inputs){
@@ -68,9 +60,6 @@ function del_doc_ann(id) {
 function update_doc_ann(ele, id) {
   console.log(ele);
 
-  let edit_btn_ann = document.querySelector("#edit_btn_ann");
-  edit_btn_ann.classList.add("is-hidden");
-
   let inputs = ele.parentNode.parentNode.querySelectorAll("input");
 
   inputs[0].type = "date";
@@ -78,17 +67,12 @@ function update_doc_ann(ele, id) {
   inputs[2].type = "text";
   inputs[3].type = "text";
 
-  let button_ann = document.querySelector('#button_ann');
-
-  let sub_edit_btn_ann = document.createElement("button");
-  sub_edit_btn_ann.id = "sub_edit_btn_ann";
-  sub_edit_btn_ann.textContent = "Submit Edit";
+  let sub_edit_btn_ann = document.querySelector(".sub_edit_btn_ann");
+  sub_edit_btn_ann.classList.remove("is-hidden");
 
   sub_edit_btn_ann.addEventListener("click", function () {
     update_fb_ann(id, inputs);
   });
-
-  button_ann.appendChild(sub_edit_btn_ann);
 };
 
 function update_fb_ann(id, inputs){
@@ -509,7 +493,7 @@ db.collection("tableview")
         doc.data().comments
       }"/></td>
       <td id="button_tv">
-        <button id="edit_btn_tv" onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
+        <button class="edit_btn_tv" onclick="update_doc_tv(this, '${doc.id}')">Edit</button>
         <button onclick="del_doc_tv('${doc.id}')">Delete</button>
       </td>
     `;
@@ -564,7 +548,7 @@ db.collection("announcements")
         doc.data().announcement
       }"/>
       </td>
-      <td id="button_ann">
+      <td>
         <button id="edit_btn_ann" onclick="update_doc_ann(this, '${doc.id}')">Edit</button>
         <button onclick="del_doc_ann('${doc.id}')">Delete</button>
       </td>
