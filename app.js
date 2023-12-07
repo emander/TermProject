@@ -143,6 +143,7 @@ function configure_nav_bar(userObj) {
 };
 // TEST STEPHANIE
 
+
 // sign in modal
 
 let signinbtn = document.querySelector("#signinbtn");
