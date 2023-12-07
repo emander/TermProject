@@ -418,7 +418,8 @@ function signOut() {
     .auth()
     .signOut()
     .then(() => {
-      console.log("User signed out successfully");
+      //console.log("User signed out successfully");
+      alert("You have successfully signed out!")
     })
     .catch((error) => {
       console.error("Error signing out:", error);
