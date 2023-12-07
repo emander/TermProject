@@ -4,7 +4,7 @@ function del_doc_tv(id) {
   db.collection("tableview")
     .doc(id)
     .delete()
-    .then(() => alert("row deleted"));
+    .then(() => alert("Task deleted! Refresh the page to continue..."));
 }
 
 function update_doc_tv(ele, id) {
@@ -61,7 +61,7 @@ function del_doc_ann(id) {
   db.collection("announcements")
     .doc(id)
     .delete()
-    .then(() => alert("row deleted"))
+    .then(() => alert("Announcement deleted! Refresh the page to continue..."))
     .then(() => refreshFilters());
 }
 
